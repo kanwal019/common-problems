@@ -17,25 +17,32 @@ namespace CSharp.Searching
         {
             int length = Convert.ToInt32(Console.ReadLine());
             var arr = Console.ReadLine().Split(' ');
+            bool desc = false;
             int[] array = new int[length];
 
-            for(int i = 0; i < length; i++)
+            for (int i = 0; i < length; i++)
             {
                 array[i] = Convert.ToInt32(arr[i]);
             }
+
+            if (array[0] >= array[length - 1])
+                desc = true;
+
+            Array.Sort(array);
 
             int count = Convert.ToInt32(Console.ReadLine());
 
             for (int i = 0; i < count; i++)
             {
-                Console.WriteLine(FindIndex(Convert.ToInt32(Console.ReadLine()), array));
+                Console.WriteLine(FindIndex(Convert.ToInt32(Console.ReadLine()), array, desc));
             }
         }
-        private static string FindIndex(int i, int[] array)
+        private static int FindIndex(int i, int[] array, bool desc)
         {
             int left = 0;
-            int right = array.Length-1;
-            return BinarySearch(left, right, i, array).ToString();
+            int right = array.Length - 1;
+            int result = BinarySearch(left, right, i, array);
+            return desc ? right - result : result + 1;
         }
 
         private static int BinarySearch(int left, int right, int i, int[] array)
@@ -51,7 +58,8 @@ namespace CSharp.Searching
                 return BinarySearch(left, mid - 1, i, array);
             }
 
-            return mid + 1;
+            return mid;
         }
     }
 }
+
