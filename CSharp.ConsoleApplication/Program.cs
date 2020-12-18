@@ -6,7 +6,7 @@ namespace CSharp.ConsoleApplication
     {
         static void Main(string[] args)
         {
-            CSharp.Strings.ReverseString.DisplayResult();
+            CSharp.Sorting.InsertionSort.DisplayResult();
         }
     }
 }
