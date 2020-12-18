@@ -6,7 +6,7 @@ namespace CSharp.ConsoleApplication
     {
         static void Main(string[] args)
         {
-            CSharp.DataStructures.MaximumBinaryNumber.DisplayResult();
+            CSharp.Sorting.InsertionSort.DisplayResult();
         }
     }
 }
