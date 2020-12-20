@@ -17,6 +17,15 @@ using System.Linq;
 
 namespace CSharp.Strings
 {
+    public class PurchaseData
+    {
+        public string CustomerName { get; set; }
+        public string StoreLocation { get; set; }
+        public int PurchaseMonth { get; set; }
+        public string ProductName { get; set; }
+        public int CostPrice { get; set; }
+    }
+
     public class StringCollection
     {
         public static void DisplayResult()
@@ -45,6 +54,8 @@ namespace CSharp.Strings
         public static List<String> ProcessData(IEnumerable<string> lines)
         {
             List<String> retVal = new List<String>();
+            List<PurchaseData> purchaseData = new List<PurchaseData>();
+            PurchaseData data = new PurchaseData();
             Dictionary<string, int> productDiscounts = new Dictionary<string, int>();
             Dictionary<string, string> custMax = new Dictionary<string, string>();
             HashSet<string> customers = new HashSet<string>();
@@ -52,25 +63,28 @@ namespace CSharp.Strings
             foreach (var line in lines)
             {
                 var current = line.Split(',');
-                string customer = current[0].Trim();
-                string product = current[3].Trim();
                 var priceData = current[4].Trim().Split(' ');
-                int price = Convert.ToInt32(priceData[1]);
 
-                customers.Add(customer);
+                data.CustomerName = current[0].Trim();
+                data.StoreLocation = current[1].Trim();
+                data.PurchaseMonth = Convert.ToInt32(current[2].Trim());
+                data.ProductName = current[3].Trim();
+                data.CostPrice = Convert.ToInt32(priceData[1]);
+                purchaseData.Add(data);
+                customers.Add(data.CustomerName);
 
-                if (productDiscounts.ContainsKey(product))
+                if (productDiscounts.ContainsKey(data.ProductName))
                 {
-                    if (productDiscounts[product] < price)
+                    if (productDiscounts[data.ProductName] < data.CostPrice)
                     {
-                        productDiscounts[product] = price;
-                        custMax[product] = customer;
+                        productDiscounts[data.ProductName] = data.CostPrice;
+                        custMax[data.ProductName] = data.CustomerName;
                     }
                 }
                 else
                 {
-                    productDiscounts.Add(product, price);
-                    custMax.Add(product, customer);
+                    productDiscounts.Add(data.ProductName, data.CostPrice);
+                    custMax.Add(data.ProductName, data.CustomerName);
                 }
             }
 
