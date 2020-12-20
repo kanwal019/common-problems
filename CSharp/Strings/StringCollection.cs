@@ -32,14 +32,29 @@ namespace CSharp.Strings
         {
             try
             {
-                String line;
-                var inputLines = new List<String>();
-                while ((line = Console.ReadLine()) != null)
+                //String line;
+                //var inputLines = new List<String>();
+                //while ((line = Console.ReadLine()) != null)
+                //{
+                //    line = line.Trim();
+                //    if (line != "")
+                //        inputLines.Add(line);
+                //}
+
+                var inputLines = new List<String>
                 {
-                    line = line.Trim();
-                    if (line != "")
-                        inputLines.Add(line);
-                }
+                    "Jon Smith, Los Angeles, 2, Cell Phone, $ 200",
+                    "John Doe, Los Angeles, 2, Landline Phone, $ 100",
+                    "John Smith, Los Angeles, 2, Landline Phone, $ 200",
+                    "John Smith, Los Angeles, 2, Cell Phone, $ 250",
+                    "Jane Smith, Los Angeles, 2, Hair Dryer, $ 200",
+                    "Jane Doe, Los Angeles, 2, Hair Dryer, $ 400",
+                    "John Smith, Los Angeles, 2, Charger, $ 200",
+                    "Jane Smith, Los Angeles, 2, Cell Phone, $ 150",
+                    "Jane Smith, Los Angeles, 2, Charger, $ 150",
+                    "John Cena, Los Angeles, 2, Charger, $ 100",
+                    "John Myth, Los Angeles, 2, Cell Phone, $ 250"
+                };
 
                 var retVal = ProcessData(inputLines);
                 foreach (var res in retVal)
@@ -55,46 +70,33 @@ namespace CSharp.Strings
         {
             List<String> retVal = new List<String>();
             List<PurchaseData> purchaseData = new List<PurchaseData>();
-            PurchaseData data = new PurchaseData();
-            Dictionary<string, int> productDiscounts = new Dictionary<string, int>();
-            Dictionary<string, string> custMax = new Dictionary<string, string>();
-            HashSet<string> customers = new HashSet<string>();
+            PurchaseData data;
 
             foreach (var line in lines)
             {
                 var current = line.Split(',');
                 var priceData = current[4].Trim().Split(' ');
 
+                data = new PurchaseData();
                 data.CustomerName = current[0].Trim();
                 data.StoreLocation = current[1].Trim();
                 data.PurchaseMonth = Convert.ToInt32(current[2].Trim());
                 data.ProductName = current[3].Trim();
                 data.CostPrice = Convert.ToInt32(priceData[1]);
                 purchaseData.Add(data);
-                customers.Add(data.CustomerName);
-
-                if (productDiscounts.ContainsKey(data.ProductName))
-                {
-                    if (productDiscounts[data.ProductName] < data.CostPrice)
-                    {
-                        productDiscounts[data.ProductName] = data.CostPrice;
-                        custMax[data.ProductName] = data.CustomerName;
-                    }
-                }
-                else
-                {
-                    productDiscounts.Add(data.ProductName, data.CostPrice);
-                    custMax.Add(data.ProductName, data.CustomerName);
-                }
             }
 
-            foreach (var customer in customers)
-            {
-                int count = custMax.Count(cd => cd.Value.Contains(customer));
+            var purchaseMax = purchaseData.GroupBy(p => p.ProductName).Select(group =>
+              {
+                  var maxPrice = group.Max(p => p.CostPrice);
+                  return group.Where(p => p.CostPrice == maxPrice).FirstOrDefault();
+              });
 
-                if (count == 0)
+            foreach (var pData in purchaseData)
+            {
+                if (!purchaseMax.Contains(pData) && !retVal.Contains(pData.CustomerName))
                 {
-                    retVal.Add(customer);
+                    retVal.Add(pData.CustomerName);
                 }
             }
 
