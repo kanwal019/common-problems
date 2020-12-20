@@ -28,20 +28,11 @@ namespace CSharp.Strings
 
     public class StringCollection
     {
-        public static void DisplayResult()
+        private List<string> MockData
         {
-            try
+            get
             {
-                //String line;
-                //var inputLines = new List<String>();
-                //while ((line = Console.ReadLine()) != null)
-                //{
-                //    line = line.Trim();
-                //    if (line != "")
-                //        inputLines.Add(line);
-                //}
-
-                var inputLines = new List<String>
+                return new List<string>
                 {
                     "Jon Smith, Los Angeles, 2, Cell Phone, $ 200",
                     "John Doe, Los Angeles, 2, Landline Phone, $ 100",
@@ -55,6 +46,21 @@ namespace CSharp.Strings
                     "John Cena, Los Angeles, 2, Charger, $ 100",
                     "John Myth, Los Angeles, 2, Cell Phone, $ 250"
                 };
+            }
+        }
+
+        public static void DisplayResult()
+        {
+            try
+            {
+                String line;
+                var inputLines = new List<String>();
+                while ((line = Console.ReadLine()) != null)
+                {
+                    line = line.Trim();
+                    if (line != "")
+                        inputLines.Add(line);
+                }
 
                 var retVal = ProcessData(inputLines);
                 foreach (var res in retVal)
@@ -86,20 +92,16 @@ namespace CSharp.Strings
                 purchaseData.Add(data);
             }
 
-            var purchaseMax = purchaseData.GroupBy(p => p.ProductName).Select(group =>
+            purchaseData = purchaseData.Select(pData =>
               {
-                  var maxPrice = group.Max(p => p.CostPrice);
-                  return group.Where(p => p.CostPrice == maxPrice).FirstOrDefault();
-              });
+                  var tempMax = purchaseData
+                  .OrderByDescending(pTemp => pTemp.CostPrice)
+                  .Where(pTemp => pTemp.ProductName == pData.ProductName)
+                  .Select(pTemp => pTemp).First();
+                  return (pData.CostPrice != tempMax.CostPrice) ? pData : null;
+              }).Where(pData => pData != null).ToList();
 
-            foreach (var pData in purchaseData)
-            {
-                if (!purchaseMax.Contains(pData) && !retVal.Contains(pData.CustomerName))
-                {
-                    retVal.Add(pData.CustomerName);
-                }
-            }
-
+            retVal = purchaseData.Select(pData => pData.CustomerName).Distinct().ToList(); 
             return retVal;
         }
     }
