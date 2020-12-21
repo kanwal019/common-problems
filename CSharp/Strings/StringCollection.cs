@@ -28,7 +28,7 @@ namespace CSharp.Strings
 
     public class StringCollection
     {
-        private List<string> MockData
+        private static List<string> MockData
         {
             get
             {
