@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharp.ConsoleApplication
 {
@@ -6,7 +8,7 @@ namespace CSharp.ConsoleApplication
     {
         static void Main(string[] args)
         {
-            CSharp.Sorting.InsertionSort.DisplayResult();
+            CSharp.Other.FindKElement.DisplayResult();
         }
     }
 }
