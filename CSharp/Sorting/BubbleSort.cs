@@ -47,6 +47,7 @@ namespace CSharp.Sorting
                 if (swapped == false)
                     break;
             }
+            Common.Display.Array(array);
         }
     }
 }
