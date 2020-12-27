@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace CSharp.Sorting
 {
-    public class InsertionSort
+    public class FindThePositions
     {
         public static void DisplayResult()
         {

@@ -16,7 +16,7 @@ using System.Linq;
 
 namespace CSharp.Sorting
 {
-    public class SelectionSort
+    public class ArrayState
     {
         public static void DisplayResult()
         {

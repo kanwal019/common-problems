@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace CSharp.Sorting
 {
-    public class BubbleSort
+    public class FindTheSwaps
     {
         public static void DisplayResult()
         {

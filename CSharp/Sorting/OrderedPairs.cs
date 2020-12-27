@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace CSharp.Sorting
 {
-    public class MergeSort
+    public class OrderedPairs
     {
         public static void DisplayResult()
         {
