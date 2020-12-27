@@ -141,6 +141,11 @@
   <ItemGroup>
     <ClCompile Include="NativeConsole.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Native\Native.vcxproj">
+      <Project>{3e2baf4a-ee32-45d9-940c-22a7eef749bb}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

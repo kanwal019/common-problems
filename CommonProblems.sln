@@ -10,6 +10,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Native", "Native\Native.vcxproj", "{3E2BAF4A-EE32-45D9-940C-22A7EEF749BB}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NativeConsole", "NativeConsole\NativeConsole.vcxproj", "{A5FD1948-5390-4891-B81F-6C2B460C43A7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3E2BAF4A-EE32-45D9-940C-22A7EEF749BB} = {3E2BAF4A-EE32-45D9-940C-22A7EEF749BB}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

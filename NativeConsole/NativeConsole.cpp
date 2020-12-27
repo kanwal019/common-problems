@@ -3,9 +3,11 @@
 
 #include <iostream>
 
+#include "FindKElement.h"
+
 int main()
 {
-    std::cout << "Hello World!\n";
+    FindKElement::DisplayResult();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
