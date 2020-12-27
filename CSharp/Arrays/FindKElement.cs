@@ -17,7 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharp.Other
+namespace CSharp.Arrays
 {
     public class FindKElement
     {
@@ -40,41 +40,33 @@ namespace CSharp.Other
 
         private static int FindLargest(List<int> iList, int iCount, int iPosition)
         {
-            int diff = 0;
-            List<int> dList = new List<int>();
+            int count = iCount;
+
+            for(int i = 0; i < count; i++)
+            {
+                for(int j = 0; j < count; j++)
+                {
+                    if (i == j)
+                    {
+                        continue;
+                    }
+
+                    int diff = Math.Abs(iList[i] - iList[j]);
+
+                    if (!iList.Contains(diff))
+                    {
+                        iList.Add(diff);
+                        count++;
+                    }
+                }
+                
+            }
 
             iList.Sort();
 
-            foreach (var listItem in iList)
+            if (iPosition <= iList.Count) 
             {
-                if (!dList.Contains(listItem))
-                {
-                    dList.Add(listItem);
-                }
-
-                for (int i = 0; i < iCount; i++)
-                {                        
-                    if (listItem > iList[i])
-                    {
-                        diff = listItem - iList[i];
-                    }
-                    else
-                    {
-                        diff = iList[i] - listItem;
-                    }
-                        
-                    if (!dList.Contains(diff))
-                    {
-                        dList.Add(diff);
-                    }                    
-                }
-            }
-
-            dList.Sort();
-
-            if (iPosition < dList.Count) 
-            {
-                return dList[dList.Count - iPosition];
+                return iList[iList.Count - iPosition];
             }
 
             return -1;

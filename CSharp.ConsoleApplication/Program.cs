@@ -8,7 +8,7 @@ namespace CSharp.ConsoleApplication
     {
         static void Main(string[] args)
         {
-            CSharp.Other.FindKElement.DisplayResult();
+            CSharp.Arrays.FindKElement.DisplayResult();
         }
     }
 }
