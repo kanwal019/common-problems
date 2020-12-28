@@ -10,7 +10,8 @@ namespace CSharp.ConsoleApplication
         {
             //int[] array = { 9, 6, 4, 1, 3, 7, 8, 5, 0, 2 };
             //CSharp.Sorting.InsertionSort.Descending(array);
-            CSharp.DynamicProgramming.StringWithout3A3B.DisplayResult();
-        }
+            
+            CSharp.Arrays.FindDuplicatesFrequency.DisplayResult();
+        }       
     }
 }
