@@ -20,7 +20,7 @@ namespace CSharp.Arrays
             int[] array = new int[count];
             array = line.Split().Select(str => int.Parse(str)).ToArray();
 
-            FindDuplicateElementsFrequency(array, count);
+            FindDuplicateElementsFrequencySanDict(array, count);
         }
 
         private static void FindDuplicateElementsFrequency(int[] array, int count)
@@ -43,6 +43,25 @@ namespace CSharp.Arrays
                 {
                     Console.WriteLine(element.Key + " occured " + element.Value + " times.");
                 }            
+            }
+        }
+
+        private static void FindDuplicateElementsFrequencySanDict(int[] array, int count)
+        {
+            int[] frequency = new int[count];
+            Array.Clear(frequency, 0, frequency.Length);
+
+            for (int i = 0; i < count; i++)
+            {
+                frequency[array[i]] += 1;
+            }
+
+            for (int i = 0; i < count; i++)
+            {
+                if (frequency[i] > 1)
+                {
+                    Console.WriteLine(i + " occured " + frequency[i] + " times.");
+                }
             }
         }
     }

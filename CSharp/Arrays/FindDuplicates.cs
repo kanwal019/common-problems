@@ -20,7 +20,7 @@ namespace CSharp.Arrays
             int[] array = new int[count];
             array = line.Split().Select(str => int.Parse(str)).ToArray();
 
-            Console.WriteLine(FindDuplicateElements(array, count));
+            Console.WriteLine(FindDuplicateElementsSansDict(array, count));
         }
 
         private static string FindDuplicateElements(int[] array, int count)
@@ -40,6 +40,26 @@ namespace CSharp.Arrays
                     continue;
                 }
                 Elements.Add(array[i], 1);
+            }
+            return str.Trim();
+        }
+
+        private static string FindDuplicateElementsSansDict(int[] array, int count)
+        {
+            string str = "";
+            bool[] isAssigned = new bool[count];
+
+            for (int i = 0; i < count; i++)
+            {
+                if (isAssigned[array[i]])
+                {
+                    if (!str.Contains(array[i].ToString()))
+                    {
+                        str += (array[i] + " ");
+                    }                   
+                    continue;
+                }
+                isAssigned[array[i]] = true;
             }
             return str.Trim();
         }
