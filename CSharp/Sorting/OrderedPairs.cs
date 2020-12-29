@@ -26,46 +26,7 @@ namespace CSharp.Sorting
                 array[i] = Convert.ToInt32(input[i]);
             }
 
-            Sort(ref array, 0, length - 1);
-        }
-
-        public static void Sort(ref int []array, int start, int end)
-        {
-            if (start < end)
-            {
-                int mid = (start + end) / 2;
-                Sort(ref array, start, mid);
-                Sort(ref array, mid + 1, end);              
-                Merge(ref array, start, mid, end);
-            }
-        }
-
-        private static void Merge(ref int[] array, int start, int mid, int end)
-        {
-            int p = start, q = mid + 1;
-
-            int[] arr = new int[end - start + 1];
-            int k = 0;
-
-            for (int i = start; i <= end; i++)
-            {
-                if (p > mid)
-                    arr[k++] = array[q++];
-
-                else if (q > end)
-                    arr[k++] = array[p++];
-
-                else if (array[p] < array[q])
-                    arr[k++] = array[p++];
-
-                else
-                    arr[k++] = array[q++];
-            }
-
-            for (int i = 0; i < k; i++)
-            {
-                array[start++] = arr[i];
-            }
-        }
+            MergeSort.Sort(ref array, 0, length - 1);
+        }      
     }
 }
