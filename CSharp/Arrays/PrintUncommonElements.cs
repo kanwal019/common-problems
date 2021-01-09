@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharp.Arrays
 {
@@ -12,7 +14,7 @@ namespace CSharp.Arrays
             int count1 = array1.Length;
             int count2 = array2.Length;
 
-            PrintUncommon(array1, array2, count1, count2);
+            PrintUncommonV2(array1, array2, count1, count2);
         }
 
         private static void PrintUncommon(int[] array1, int[] array2, int count1, int count2)
@@ -56,5 +58,31 @@ namespace CSharp.Arrays
                 }
             }
         }
+
+        private static void PrintUncommonV2(int[] array1, int[] array2, int count1, int count2)
+        {
+            array1 =  array1.Concat(array2).ToArray();
+            Array.Sort(array1);
+
+            Dictionary<int, int> elementCount = new Dictionary<int, int>();
+
+            for(int i = 0; i < array1.Length; i++)
+            {
+                if (elementCount.ContainsKey(array1[i]))
+                {
+                    elementCount[array1[i]] += 1;
+                    continue;
+                }
+                elementCount.Add(array1[i], 1);
+            }
+
+            for(int i = 0; i < array1.Length; i++)
+            {
+                if(elementCount[array1[i]] == 1)
+                {
+                    Console.Write(array1[i] + " ");
+                }
+            }
+        } 
     }
 }
