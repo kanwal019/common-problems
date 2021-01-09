@@ -14,7 +14,7 @@ namespace CSharp.Arrays
             int count1 = array1.Length;
             int count2 = array2.Length;
 
-            PrintUncommonV2(array1, array2, count1, count2);
+            PrintUncommonV3(array1, array2, count1, count2);
         }
 
         private static void PrintUncommon(int[] array1, int[] array2, int count1, int count2)
@@ -83,6 +83,35 @@ namespace CSharp.Arrays
                     Console.Write(array1[i] + " ");
                 }
             }
-        } 
+        }
+
+        private static void PrintUncommonV3(int[] array1, int[] array2, int count1, int count2)
+        {
+            Array.Sort(array1);
+            Array.Sort(array2);
+
+            List<int> uncommon = new List<int>();
+
+            for (int i = 0; i < count1; i++)
+            {
+                if (Array.IndexOf(array2, array1[i]) == -1)
+                {
+                    uncommon.Add(array1[i]);
+                }
+            };
+
+            for (int i = 0; i < count2; i++)
+            {
+                if (Array.IndexOf(array1, array2[i]) == -1)
+                {
+                    uncommon.Add(array2[i]);
+                }
+            };
+
+            foreach(var item in uncommon)
+            {
+                Console.Write(item + " ");
+            }
+        }
     }
 }
