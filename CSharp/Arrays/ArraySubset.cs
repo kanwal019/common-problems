@@ -12,7 +12,7 @@ namespace CSharp.Arrays
 			int[] array1 = { 10, 40, 30, 45, 20, 15, 60 , 50 };
 			int[] array2 = { 40, 50, 60, 45 };
 
-			IsSubset(array1, array2);
+			Console.WriteLine(IsSubset(array1, array2));
 		}
 
         static bool IsSubset(int[] parent, int[] child) 
