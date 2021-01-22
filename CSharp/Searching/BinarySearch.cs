@@ -11,7 +11,7 @@ namespace CSharp.Searching
             int[] array = { 10, 40, 30, 45, 20, 15 };
             int num = 45;
 
-            for(int i = 0; i < array.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
                 Console.Write(array[i] + ", ");
             }
@@ -28,16 +28,16 @@ namespace CSharp.Searching
             int min = 0;
             int max = array.Length - 1;
 
-            while(min <= max)
+            while (min <= max)
             {
                 int mid = (min + max) / 2;
                 
-                if(num == array[mid])
+                if (num == array[mid])
                 {
                     return ++mid;
                 }
 
-                if(num < array[mid])
+                if (num < array[mid])
                 {
                     max = mid - 1;
                 }
@@ -52,7 +52,7 @@ namespace CSharp.Searching
 
         static int SearchRecursive(int[] array, int num, int min, int max)
         {
-            if(min > max)
+            if (min > max)
             {
                 return -1;
             }
