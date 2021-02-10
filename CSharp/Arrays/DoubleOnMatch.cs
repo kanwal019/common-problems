@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CSharp.Arrays
 {
-    public class DoubleSize
+    public class DoubleOnMatch
     {
         public static void DisplayResult()
         {
