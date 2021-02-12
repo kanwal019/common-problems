@@ -12,9 +12,9 @@ namespace CSharp.Arrays
         public static void DisplayResult()
         {
             int[] input = { 1, 5, 22, 10, 17 };
-            int sum = 12;
+            int sum = 14;
 
-            GetClosestPair(input, sum);
+            GetClosestPairV2(input, sum);
         }
 
         private static void GetClosestPair(int[] input, int sum)
@@ -48,6 +48,34 @@ namespace CSharp.Arrays
             }
 
             Console.WriteLine("(" + diffPairs[nearest] + ")");
+        }
+
+        private static void GetClosestPairV2(int[] input, int sum)
+        {
+            Array.Sort(input);
+            int res_l = 0, res_r = 0;
+            int l = 0, r = input.Length - 1, diff = sum;
+
+            while (r > l)
+            {
+                if (Math.Abs(input[l] + input[r] - sum) < diff)
+                {
+                    res_l = l;
+                    res_r = r;
+                    diff = Math.Abs(input[l] + input[r] - sum);
+                }
+
+                if (input[l] + input[r] > sum)
+                {
+                    r -= 1;
+                }
+                else
+                {
+                    l += 1;
+                }
+            }
+
+            Console.Write("(" + input[res_l] + "," + input[res_r] + ")");
         }
     }
 }
