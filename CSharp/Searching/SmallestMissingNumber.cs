@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ * Write a program to find the smallest missing number(N) from an array. N >= 1
+ */
+
+using System;
 
 namespace CSharp.Searching
 {
