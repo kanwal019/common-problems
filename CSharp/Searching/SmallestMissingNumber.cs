@@ -24,6 +24,7 @@ namespace CSharp.Searching
                     else if (element > smallestMissing)
                     {
                         Console.WriteLine(smallestMissing);
+                        return;
                     }
                 }
             }
