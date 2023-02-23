@@ -9,57 +9,56 @@
 
 using System;
 
-namespace CSharp.Searching
+namespace CSharp.Searching;
+
+public class RankIt
 {
-    public class RankIt
+    public static void DisplayResult()
     {
-        public static void DisplayResult()
+        int length = Convert.ToInt32(Console.ReadLine());
+        var arr = Console.ReadLine().Split(' ');
+        bool desc = false;
+        int[] array = new int[length];
+
+        for (int i = 0; i < length; i++)
         {
-            int length = Convert.ToInt32(Console.ReadLine());
-            var arr = Console.ReadLine().Split(' ');
-            bool desc = false;
-            int[] array = new int[length];
-
-            for (int i = 0; i < length; i++)
-            {
-                array[i] = Convert.ToInt32(arr[i]);
-            }
-
-            if (array[0] >= array[length - 1])
-                desc = true;
-
-            Array.Sort(array);
-
-            int count = Convert.ToInt32(Console.ReadLine());
-
-            for (int i = 0; i < count; i++)
-            {
-                Console.WriteLine(FindIndex(Convert.ToInt32(Console.ReadLine()), array, desc));
-            }
-        }
-        private static int FindIndex(int i, int[] array, bool desc)
-        {
-            int left = 0;
-            int right = array.Length - 1;
-            int result = BinarySearch(left, right, i, array);
-            return desc ? right - result : result + 1;
+            array[i] = Convert.ToInt32(arr[i]);
         }
 
-        private static int BinarySearch(int left, int right, int i, int[] array)
+        if (array[0] >= array[length - 1])
+            desc = true;
+
+        Array.Sort(array);
+
+        int count = Convert.ToInt32(Console.ReadLine());
+
+        for (int i = 0; i < count; i++)
         {
-            int mid = (left + right) / 2;
-
-            if (array[mid] < i)
-            {
-                return BinarySearch(mid + 1, right, i, array);
-            }
-            else if (array[mid] > i)
-            {
-                return BinarySearch(left, mid - 1, i, array);
-            }
-
-            return mid;
+            Console.WriteLine(FindIndex(Convert.ToInt32(Console.ReadLine()), array, desc));
         }
+    }
+    private static int FindIndex(int i, int[] array, bool desc)
+    {
+        int left = 0;
+        int right = array.Length - 1;
+        int result = BinarySearch(left, right, i, array);
+        return desc ? right - result : result + 1;
+    }
+
+    private static int BinarySearch(int left, int right, int i, int[] array)
+    {
+        int mid = (left + right) / 2;
+
+        if (array[mid] < i)
+        {
+            return BinarySearch(mid + 1, right, i, array);
+        }
+        else if (array[mid] > i)
+        {
+            return BinarySearch(left, mid - 1, i, array);
+        }
+
+        return mid;
     }
 }
 

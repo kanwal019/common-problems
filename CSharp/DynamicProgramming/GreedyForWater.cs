@@ -10,31 +10,28 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace CSharp.DynamicProgramming
+namespace CSharp.DynamicProgramming;
+
+public class GreedyForWater
 {
-    public class GreedyForWater
+    public static void DisplayResult()
     {
-        public static void DisplayResult()
+        int count = Convert.ToInt32(Console.ReadLine());
+        
+        for (int i = 0; i < count; i++)
         {
-            int count = Convert.ToInt32(Console.ReadLine());
-            
-            for (int i = 0; i < count; i++)
-            {
-                var input = Console.ReadLine().Split(' ');
-                int number = Convert.ToInt32(input[0]);
-                int capacity = Convert.ToInt32(input[1]);
-                var capacities = Console.ReadLine().Split(' ');
-                int[] array = new int[number];
+            var input = Console.ReadLine().Split(' ');
+            int number = Convert.ToInt32(input[0]);
+            int capacity = Convert.ToInt32(input[1]);
+            var capacities = Console.ReadLine().Split(' ');
+            int[] array = new int[number];
 
-                for (int j = 0; j < number; j++)
-                {
-                    array[i] = Convert.ToInt32(capacities[j]);
-                }
-                
+            for (int j = 0; j < number; j++)
+            {
+                array[i] = Convert.ToInt32(capacities[j]);
             }
+            
         }
     }
 }

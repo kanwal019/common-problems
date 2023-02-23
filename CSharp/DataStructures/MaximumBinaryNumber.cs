@@ -10,97 +10,96 @@
 
 using System;
 
-namespace CSharp.DataStructures
+namespace CSharp.DataStructures;
+
+public class MaximumBinaryNumber
 {
-    public class MaximumBinaryNumber
+    public static void DisplayResult()
     {
-        public static void DisplayResult()
-        {
-            int num = Convert.ToInt32(Console.ReadLine());
+        int num = Convert.ToInt32(Console.ReadLine());
 
-            for(int i = 0; i < num; i++)
+        for(int i = 0; i < num; i++)
+        {
+            var firstLine = Console.ReadLine().Split();
+            int length = Convert.ToInt32(firstLine[0]);
+            int count = Convert.ToInt32(firstLine[1]);
+            string binaryString = Console.ReadLine();
+            CalculateShiftsToMax(binaryString, length, count);
+        }
+    }
+
+    static void CalculateShiftsToMax(string binaryString, int length, int count)
+    {
+        string current = binaryString;
+        string max = binaryString;
+        int shifts = 0;
+        int thisCount = 0;
+
+        while(thisCount != count)
+        {
+            char first = current[0];
+            current = current.Substring(1);
+            current += first;
+            shifts += 1;
+
+            CheckMax(current, ref max, length);
+
+            if (current == binaryString)
             {
-                var firstLine = Console.ReadLine().Split();
-                int length = Convert.ToInt32(firstLine[0]);
-                int count = Convert.ToInt32(firstLine[1]);
-                string binaryString = Console.ReadLine();
-                CalculateShiftsToMax(binaryString, length, count);
+                thisCount++;
             }
         }
 
-        static void CalculateShiftsToMax(string binaryString, int length, int count)
+        Console.WriteLine(shifts - 1);
+    }
+
+    static void CheckMax(string current, ref string max, int length)
+    {
+        if (length % 2 != 0)
         {
-            string current = binaryString;
-            string max = binaryString;
-            int shifts = 0;
-            int thisCount = 0;
-
-            while(thisCount != count)
+            if (Convert.ToInt32(current[0]) > Convert.ToInt32(max[0]))
             {
-                char first = current[0];
-                current = current.Substring(1);
-                current += first;
-                shifts += 1;
-
-                CheckMax(current, ref max, length);
-
-                if (current == binaryString)
-                {
-                    thisCount++;
-                }
+                max = current;
+                return;
+            }
+            else if (Convert.ToInt32(current[0]) < Convert.ToInt32(max[0]))
+            {
+                return;
             }
 
-            Console.WriteLine(shifts - 1);
-        }
-
-        static void CheckMax(string current, ref string max, int length)
-        {
-            if(length%2 != 0)
+            if (IsCurrentStringMax(current[1..], max[1..]))
             {
-                if(Convert.ToInt32(current[0]) > Convert.ToInt32(max[0]))
-                {
-                    max = current;
-                    return;
-                }
-                else if(Convert.ToInt32(current[0]) < Convert.ToInt32(max[0])) 
-                {
-                    return;
-                }
-
-                if(IsCurrentStringMax(current.Substring(1), max.Substring(1)))
-                {
-                    max = current;
-                }
-            }
-            else
-            {
-                if (IsCurrentStringMax(current, max))
-                {
-                    max = current;
-                    return;
-                }
+                max = current;
             }
         }
-
-        static bool IsCurrentStringMax(string current, string max)
+        else
         {
-            if(Convert.ToInt32(current.Substring(0,2)) > Convert.ToInt32(max.Substring(0, 2)))
+            if (IsCurrentStringMax(current, max))
             {
-                return true;
-            } 
-            else if(Convert.ToInt32(current.Substring(0, 2)) < Convert.ToInt32(max.Substring(0, 2)))
-            {
-                return false;
+                max = current;
+                return;
             }
-
-            if(current.Length > 2)
-            {
-                return IsCurrentStringMax(current.Substring(2), max.Substring(2));
-            }
-            else
-            {
-                return false;
-            }              
         }
+    }
+
+    static bool IsCurrentStringMax(string current, string max)
+    {
+        if(Convert.ToInt32(current[..2]) > Convert.ToInt32(max[..2]))
+        {
+            return true;
+        } 
+        else if(Convert.ToInt32(current[..2]) < Convert.ToInt32(max[..2]))
+        {
+            return false;
+        }
+
+        if(current.Length > 2)
+        {
+            return IsCurrentStringMax(current[2..], max[2..]);
+        }
+        else
+        {
+            return false;
+        }              
     }
 }

@@ -5,29 +5,28 @@
  */
 using System;
 
-namespace CSharp.Strings
+namespace CSharp.Strings;
+
+internal class MaxBananas
 {
-    internal class MaxBananas
+    public static int Find(string str)
     {
-        public static int Find(string str)
+        int b = 0, a = 0, n = 0;
+
+        for (int i = 0; i < str.Length; i++)
         {
-            int b = 0, a = 0, n = 0;
-
-            for (int i = 0; i < str.Length; i++)
+            switch (str[i])
             {
-                switch (str[i])
-                {
-                    case 'B': b += 1; break;
-                    case 'A': a += 1; break;
-                    case 'N': n += 1; break;
-                    default: break;
-                }
+                case 'B': b += 1; break;
+                case 'A': a += 1; break;
+                case 'N': n += 1; break;
+                default: break;
             }
-
-            a /= 3;
-            n /= 2;
-
-            return Math.Min(b, Math.Min(a, n));
         }
+
+        a /= 3;
+        n /= 2;
+
+        return Math.Min(b, Math.Min(a, n));
     }
 }

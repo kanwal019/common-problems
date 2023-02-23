@@ -11,22 +11,21 @@
 using System;
 using System.Linq;
 
-namespace CSharp.Sorting
+namespace CSharp.Sorting;
+
+public class OrderedPairs
 {
-    public class OrderedPairs
+    public static void DisplayResult()
     {
-        public static void DisplayResult()
+        int length = Convert.ToInt32(Console.ReadLine());
+        var input = Console.ReadLine().Split(' ');
+        int[] array = new int[length];
+
+        foreach (int i in Enumerable.Range(0, length))
         {
-            int length = Convert.ToInt32(Console.ReadLine());
-            var input = Console.ReadLine().Split(' ');
-            int[] array = new int[length];
+            array[i] = Convert.ToInt32(input[i]);
+        }
 
-            foreach (int i in Enumerable.Range(0, length))
-            {
-                array[i] = Convert.ToInt32(input[i]);
-            }
-
-            MergeSort.Sort(ref array, 0, length - 1);
-        }      
-    }
+        MergeSort.Sort(ref array, 0, length - 1);
+    }      
 }

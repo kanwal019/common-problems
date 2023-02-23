@@ -13,34 +13,33 @@
 using System;
 using System.Linq;
 
-namespace CSharp.Arrays
+namespace CSharp.Arrays;
+
+class MagicValue
 {
-    class MagicValue
+    public static void DisplayResult() 
     {
-        public static void DisplayResult() 
+        string line = Console.ReadLine();
+        int count = Convert.ToInt32(line);
+        line = Console.ReadLine();
+
+        int[] array = new int[count];
+        array = line.Split().Select(int.Parse).ToArray();
+
+        int[] iArray = new int[count];
+        int good = 0, bad = 0;
+
+        Array.Copy(array, iArray, count);
+        Array.Sort(array);
+
+        for (int i = 0; i < count; i++)
         {
-            String line = Console.ReadLine();
-            int count = Convert.ToInt32(line);
-            line = Console.ReadLine();
-
-            int[] array = new int[count];
-            array = line.Split().Select(str => int.Parse(str)).ToArray();
-
-            int[] iArray = new int[count];
-            int good = 0, bad = 0;
-
-            Array.Copy(array, iArray, count);
-            Array.Sort(array);
-
-            for (int i = 0; i < count; i++)
-            {
-                if (array[i] == iArray[i])
-                    good += array[i];
-                else
-                    bad += array[i];
-            }
-
-            Console.WriteLine(good - bad);
+            if (array[i] == iArray[i])
+                good += array[i];
+            else
+                bad += array[i];
         }
+
+        Console.WriteLine(good - bad);
     }
 }

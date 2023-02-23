@@ -13,47 +13,46 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharp.Arrays
+namespace CSharp.Arrays;
+
+public class FindUniqueOne
 {
-    public class FindUniqueOne
+    public static void DisplayResult()
     {
-        public static void DisplayResult()
-        {
-            String line = Console.ReadLine();
-            int count = Convert.ToInt32(line);
+        string line = Console.ReadLine();
+        int count = Convert.ToInt32(line);
 
-            for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)
+        {
+            line = Console.ReadLine();
+            int iCount = Convert.ToInt32(line);
+            line = Console.ReadLine();
+            var iList = line.Split().Select(int.Parse).ToList();
+            Console.WriteLine("Case " + (i + 1) + ": " + FindUnique(iList, iCount));
+        }
+    }
+
+    private static int FindUnique(List<int> iList, int iCount)
+    {
+        Dictionary<int, int> elementCount = new();
+
+        for (int i = 0; i < iCount; i++)
+        {
+            if (elementCount.ContainsKey(iList.ElementAt(i)))
             {
-                line = Console.ReadLine();
-                int iCount = Convert.ToInt32(line);
-                line = Console.ReadLine();
-                var iList = line.Split().Select(str => int.Parse(str)).ToList();
-                Console.WriteLine("Case " + (i + 1) + ": " + FindUnique(iList, iCount));
+                elementCount[iList.ElementAt(i)] += 1;
+                continue;
             }
+            elementCount.Add(iList.ElementAt(i), 1);
         }
 
-        private static int FindUnique(List<int> iList, int iCount)
+        for (int i = 0; i < iCount; i++)
         {
-            Dictionary<int, int> elementCount = new Dictionary<int, int>();
-
-            for (int i = 0; i < iCount; i++)
+            if (elementCount[iList.ElementAt(i)] % 2 != 0)
             {
-                if (elementCount.ContainsKey(iList.ElementAt(i)))
-                {
-                    elementCount[iList.ElementAt(i)] += 1;
-                    continue;
-                }
-                elementCount.Add(iList.ElementAt(i), 1);
+                return iList.ElementAt(i);
             }
-
-            for (int i = 0; i < iCount; i++)
-            {
-                if (elementCount[iList.ElementAt(i)] % 2 != 0)
-                {
-                    return iList.ElementAt(i);
-                }
-            }
-            return -1;
         }
+        return -1;
     }
 }

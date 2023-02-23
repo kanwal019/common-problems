@@ -1,27 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace CSharp.Arrays
+namespace CSharp.Arrays;
+
+public class DoubleOnMatch
 {
-    public class DoubleOnMatch
+    public static void DisplayResult()
     {
-        public static void DisplayResult()
-        {
-            int[] array = { 1, 2, 4, 11, 12, 8 };
-            Console.WriteLine(ProcessSize(array, 2));
-        }
+        int[] array = { 1, 2, 4, 11, 12, 8 };
+        Console.WriteLine(ProcessSize(array, 2));
+    }
 
-        static int ProcessSize(int[] array, int num)
+    static int ProcessSize(int[] array, int num)
+    {
+        for (int i = 0; i < array.Length; i++)
         {
-            for (int i = 0; i < array.Length; i++)
+            if (array[i] == num)
             {
-                if (array[i] == num)
-                {
-                    num *= 2;
-                }
+                num *= 2;
             }
-            return num;
         }
+        return num;
     }
 }

@@ -10,42 +10,37 @@
 using System;
 using System.Linq;
 
-namespace CSharp.Sorting
-{
-    public class FindTheSwaps
-    {
-        public static void DisplayResult()
-        {
-            int length = Convert.ToInt32(Console.ReadLine());
-            var input = Console.ReadLine().Split(' ');
-            int[] array = new int[length];
+namespace CSharp.Sorting;
 
-            foreach (int i in Enumerable.Range(0, length))
+public class FindTheSwaps
+{
+    public static void DisplayResult()
+    {
+        int length = Convert.ToInt32(Console.ReadLine());
+        var input = Console.ReadLine().Split(' ');
+        int[] array = new int[length];
+
+        foreach (int i in Enumerable.Range(0, length))
+        {
+            array[i] = Convert.ToInt32(input[i]);
+        }
+
+        Console.WriteLine(CalculateSwaps(array, length));
+    }
+
+    private static int CalculateSwaps(int[] array, int length)
+    {
+        int swaps = 0;
+        foreach (int i in Enumerable.Range(0, length - 1))
+            foreach (int j in Enumerable.Range(0, length - 1))
             {
-                array[i] = Convert.ToInt32(input[i]);
+                if(array[j] > array[j + 1])
+                {
+                    (array[j + 1], array[j]) = (array[j], array[j + 1]);
+                    swaps += 1;
+                }
             }
 
-            Console.WriteLine(CalculateSwaps(array, length));
-        }
-
-        private static int CalculateSwaps(int[] array, int length)
-        {
-            int swaps = 0;
-            int temp = 0;
-
-            foreach (int i in Enumerable.Range(0, length - 1))
-                foreach (int j in Enumerable.Range(0, length - 1))
-                {
-                    if(array[j] > array[j + 1])
-                    {
-                        temp = array[j];
-                        array[j] = array[j + 1];
-                        array[j + 1] = temp;
-                        swaps += 1;
-                    }
-                }
-
-            return swaps;
-        }
+        return swaps;
     }
 }
