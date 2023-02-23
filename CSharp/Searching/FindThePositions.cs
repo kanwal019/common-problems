@@ -9,67 +9,66 @@
 using System;
 using System.Linq;
 
-namespace CSharp.Searching
+namespace CSharp.Searching;
+
+public class FindThePositions
 {
-    public class FindThePositions
+    public static void DisplayResult()
     {
-        public static void DisplayResult()
+        int length = Convert.ToInt32(Console.ReadLine());
+        var input = Console.ReadLine().Split(' ');
+        int[] array = new int[length];
+
+        foreach (int i in Enumerable.Range(0, length))
         {
-            int length = Convert.ToInt32(Console.ReadLine());
-            var input = Console.ReadLine().Split(' ');
-            int[] array = new int[length];
-
-            foreach (int i in Enumerable.Range(0, length))
-            {
-                array[i] = Convert.ToInt32(input[i]);
-            }
-
-            FindPositions(array, length);
+            array[i] = Convert.ToInt32(input[i]);
         }
 
-        private static void FindPositions(int[] array, int length)
+        FindPositions(array, length);
+    }
+
+    private static void FindPositions(int[] array, int length)
+    {
+        int[] arr = new int[length];
+        
+        for(int i = 0; i < length; i++)
         {
-            int[] arr = new int[length];
-            
-            for(int i = 0; i < length; i++)
-            {
-                arr[i] = array[i];
-            }
-
-            for (int i = 1; i < length; i++)
-            {
-                int key = arr[i];
-                int j = i - 1;
-
-                while (j >= 0 && arr[j] > key)
-                {
-                    arr[j + 1] = arr[j];
-                    j -= 1;
-                }
-
-                arr[j + 1] = key;
-            }
-
-            for(int i = 0; i < length; i++)
-            {
-                Console.Write(BinarySearch(0, length - 1, array[i], arr) + " ");
-            }
+            arr[i] = array[i];
         }
 
-        private static int BinarySearch(int left, int right, int i, int[] array)
+        for (int i = 1; i < length; i++)
         {
-            int mid = (left + right) / 2;
+            int key = arr[i];
+            int j = i - 1;
 
-            if (array[mid] < i)
+            while (j >= 0 && arr[j] > key)
             {
-                return BinarySearch(mid + 1, right, i, array);
-            }
-            else if (array[mid] > i)
-            {
-                return BinarySearch(left, mid - 1, i, array);
+                arr[j + 1] = arr[j];
+                j -= 1;
             }
 
-            return mid + 1;
+            arr[j + 1] = key;
         }
+
+        for(int i = 0; i < length; i++)
+        {
+            Console.Write(BinarySearch(0, length - 1, array[i], arr) + " ");
+        }
+    }
+
+    private static int BinarySearch(int left, int right, int i, int[] array)
+    {
+        int mid = (left + right) / 2;
+
+        if (array[mid] < i)
+        {
+            return BinarySearch(mid + 1, right, i, array);
+        }
+        else if (array[mid] > i)
+        {
+            return BinarySearch(left, mid - 1, i, array);
+        }
+
+        return mid + 1;
     }
 }

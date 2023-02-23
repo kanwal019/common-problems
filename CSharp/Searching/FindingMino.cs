@@ -15,65 +15,64 @@
 using System;
 using System.Linq;
 
-namespace CSharp.Searching
+namespace CSharp.Searching;
+
+public class FindingMino
 {
-    public class FindingMino
+    public static void DisplayResult()
     {
-        public static void DisplayResult()
-        {
-            int length = Convert.ToInt32(Console.ReadLine());
+        int length = Convert.ToInt32(Console.ReadLine());
 
-            foreach (int i in Enumerable.Range(0, length))
-            {
-                _ = i;
-                var input = Console.ReadLine().Split(' ');
-                Console.WriteLine(Math.Round(Mino(Convert.ToInt32(input[0]), Convert.ToInt32(input[1]))));
-            }
+        foreach (int i in Enumerable.Range(0, length))
+        {
+            _ = i;
+            var input = Console.ReadLine().Split(' ');
+            Console.WriteLine(Math.Round(Mino(Convert.ToInt32(input[0]), Convert.ToInt32(input[1]))));
         }
-
-        private static double Func(double x)
-        {
-            return 2 * Math.Pow(x, 2) - 12 * x + 7;
-        }
-
-        public static double Mino(double start, double end)
-        {
-            double left = start;
-            double right = end;
-            foreach (int i in Enumerable.Range(0, 200))
-            {
-                double mid1 = left + (right - left) / 3;
-                double mid2 = right - (right - left) / 3;
-                if (Func(mid1) < Func(mid2))
-                {
-                    right = mid2;
-                }
-                else
-                {
-                    left = mid1;
-                }
-            }
-            return Func(left);
-        }
-
-        /*private static int TernarySearch(int left, int right, int i, int []array)
-        {
-            if (right >= left)
-            {
-                int mid1 = left + (right - left) / 3;
-                int mid2 = right - (right - left) / 3;
-                if (array[mid1] == i)
-                    return mid1;
-                if (array[mid2] == i)
-                    return mid2;
-                if (i < array[mid1])
-                    return TernarySearch(left, mid1 - 1, i, array);
-                else if (i > array[mid2])
-                    return TernarySearch(mid2 + 1, right, i, array);
-                else
-                    return TernarySearch(mid1 + 1, mid2 - 1, i, array);
-            }
-            return -1;
-        }*/
     }
+
+    private static double Func(double x)
+    {
+        return 2 * Math.Pow(x, 2) - 12 * x + 7;
+    }
+
+    public static double Mino(double start, double end)
+    {
+        double left = start;
+        double right = end;
+        foreach (int i in Enumerable.Range(0, 200))
+        {
+            double mid1 = left + (right - left) / 3;
+            double mid2 = right - (right - left) / 3;
+            if (Func(mid1) < Func(mid2))
+            {
+                right = mid2;
+            }
+            else
+            {
+                left = mid1;
+            }
+        }
+        return Func(left);
+    }
+
+    /*private static int TernarySearch(int left, int right, int i, int []array)
+    {
+        if (right >= left)
+        {
+            int mid1 = left + (right - left) / 3;
+            int mid2 = right - (right - left) / 3;
+            if (array[mid1] == i)
+                return mid1;
+            if (array[mid2] == i)
+                return mid2;
+            if (i < array[mid1])
+                return TernarySearch(left, mid1 - 1, i, array);
+            else if (i > array[mid2])
+                return TernarySearch(mid2 + 1, right, i, array);
+            else
+                return TernarySearch(mid1 + 1, mid2 - 1, i, array);
+        }
+        return -1;
+    }*/
 }

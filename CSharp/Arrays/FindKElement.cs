@@ -17,59 +17,58 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharp.Arrays
+namespace CSharp.Arrays;
+
+public class FindKElement
 {
-    public class FindKElement
+    public static void DisplayResult()
     {
-        public static void DisplayResult()
-        {
-            String line = Console.ReadLine();
-            int count = Convert.ToInt32(line);
+        string line = Console.ReadLine();
+        int count = Convert.ToInt32(line);
 
-            for (int i = 0; i < count; i++)
-            {
-                line = Console.ReadLine();
-                int iCount = Convert.ToInt32(line);
-                line = Console.ReadLine();
-                var iList = line.Split().Select(str => int.Parse(str)).ToList();
-                line = Console.ReadLine();
-                int iPosition = Convert.ToInt32(line);
-                Console.WriteLine(FindLargest(iList, iCount, iPosition));
-            }
+        for (int i = 0; i < count; i++)
+        {
+            line = Console.ReadLine();
+            int iCount = Convert.ToInt32(line);
+            line = Console.ReadLine();
+            var iList = line.Split().Select(int.Parse).ToList();
+            line = Console.ReadLine();
+            int iPosition = Convert.ToInt32(line);
+            Console.WriteLine(FindLargest(iList, iCount, iPosition));
         }
+    }
 
-        private static int FindLargest(List<int> iList, int iCount, int iPosition)
+    private static int FindLargest(List<int> iList, int iCount, int iPosition)
+    {
+        int count = iCount;
+
+        for(int i = 0; i < count; i++)
         {
-            int count = iCount;
-
-            for(int i = 0; i < count; i++)
+            for(int j = 0; j < count; j++)
             {
-                for(int j = 0; j < count; j++)
+                if (i == j)
                 {
-                    if (i == j)
-                    {
-                        continue;
-                    }
-
-                    int diff = Math.Abs(iList[i] - iList[j]);
-
-                    if (!iList.Contains(diff))
-                    {
-                        iList.Add(diff);
-                        count++;
-                    }
+                    continue;
                 }
-                
+
+                int diff = Math.Abs(iList[i] - iList[j]);
+
+                if (!iList.Contains(diff))
+                {
+                    iList.Add(diff);
+                    count++;
+                }
             }
-
-            iList.Sort();
-
-            if (iPosition <= iList.Count) 
-            {
-                return iList[iList.Count - iPosition];
-            }
-
-            return -1;
+            
         }
+
+        iList.Sort();
+
+        if (iPosition <= iList.Count) 
+        {
+            return iList[^iPosition];
+        }
+
+        return -1;
     }
 }

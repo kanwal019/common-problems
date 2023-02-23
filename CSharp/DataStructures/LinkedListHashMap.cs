@@ -11,58 +11,57 @@
 using System;
 using System.Collections.Generic;
 
-namespace CSharp.DataStructures
+namespace CSharp.DataStructures;
+
+public class LinkedListHashMap
 {
-    public class LinkedListHashMap
+    public static void DisplayResult()
     {
-        public static void DisplayResult() 
+        int count = Convert.ToInt32(Console.ReadLine());
+        HashMap hashMap = new();
+        for (int i = 0; i < count; i++)
         {
-            int count = Convert.ToInt32(Console.ReadLine());
-            HashMap hashMap = new HashMap();
-            for (int i = 0; i < count; i++)
-            {
-                var line = Console.ReadLine().Split(' ');
-                hashMap.Insert(line[0].Trim(), Convert.ToInt32(line[1].Trim()));
-            }
-            hashMap.Print();
+            var line = Console.ReadLine().Split(' ');
+            hashMap.Insert(line[0].Trim(), Convert.ToInt32(line[1].Trim()));
+        }
+        hashMap.Print();
+    }
+
+    public class Data
+    {
+        public string Key { get; set; }
+        public int Value { get; set; }
+    }
+
+    public class HashMap
+    {
+        private Data data;
+        private readonly List<Data> list;
+
+        public HashMap()
+        {
+            list = new List<Data>();
         }
 
-		public class Data
-		{
-			public string key { get; set; }
-			public int value { get; set; }
-		}
+        public void Insert(string iKey, int iValue)
+        {
+            data = new Data() { Key = iKey, Value = iValue };
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].Key == iKey)
+                {
+                    return;
+                }
+            }
+            list.Add(data);
+        }
 
-		public class HashMap
-		{
-			private Data data;
-			private List<Data> list;
-
-			public HashMap()
-			{
-				this.list = new List<Data>();
-			}
-
-			public void Insert(string iKey, int iValue)
-			{
-				this.data = new Data() { key = iKey, value = iValue };
-				for (int i = 0; i < this.list.Count; i++)
-				{
-					if (this.list[i].key == iKey)
-					{
-						return;
-					}
-				}
-				this.list.Add(this.data);
-			}
-
-			public void Print()
-			{
-				foreach (var listItem in this.list)
-				{
-					Console.WriteLine(listItem.key + " " + listItem.value);
-				}
-			}
-		}
-	}
+        public void Print()
+        {
+            foreach (var listItem in list)
+            {
+                Console.WriteLine(listItem.Key + " " + listItem.Value);
+            }
+        }
+    }
 }

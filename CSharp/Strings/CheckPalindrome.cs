@@ -7,25 +7,24 @@
  */
 using System;
 
-namespace CSharp.Strings
-{
-    public class CheckPalindrome
-    {
-        public static void DisplayResult()
-        {
-            string str = Console.ReadLine();          
-            Console.WriteLine(IsPalindrome(str));
-        }
+namespace CSharp.Strings;
 
-        private static string IsPalindrome(string str)
+public class CheckPalindrome
+{
+    public static void DisplayResult()
+    {
+        string str = Console.ReadLine();          
+        Console.WriteLine(IsPalindrome(str));
+    }
+
+    private static string IsPalindrome(string str)
+    {
+        string current = str.Replace(" ", string.Empty);
+        string reverse = "";
+        for (int i = current.Length - 1; i >= 0; i--)
         {
-            string current = str.Replace(" ", String.Empty);
-            string reverse = "";
-            for (int i = current.Length - 1; i >= 0; i--)
-            {
-                reverse += current[i].ToString();
-            }
-            return (reverse == current).ToString();
+            reverse += current[i].ToString();
         }
+        return (reverse == current).ToString();
     }
 }

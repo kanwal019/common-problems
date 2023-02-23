@@ -12,54 +12,53 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace CSharp.Strings
+namespace CSharp.Strings;
+
+public class CompleteString
 {
-    public class CompleteString
+    public static void DisplayResult()
     {
-        public static void DisplayResult()
+        var length = Convert.ToInt32(Console.ReadLine());
+        List<string> input = new();
+
+        for (int i = 0; i < length; i++)
         {
-            var length = Convert.ToInt32(Console.ReadLine());
-            List<string> input = new List<string>();
+            input.Add(Console.ReadLine());
+        }
 
-            for (int i = 0; i < length; i++)
+        foreach (var i in input)
+        {
+            if (Regex.IsMatch(i, @"^[a-zA-Z]+$"))
             {
-                input.Add(Console.ReadLine());
-            }
-
-            foreach (var i in input)
-            {
-                if (Regex.IsMatch(i, @"^[a-zA-Z]+$"))
+                if (i.Length >= 26)
                 {
-                    if (i.Length >= 26)
+                    if (ContainsAll(i.ToLower()))
                     {
-                        if (ContainsAll(i.ToLower()))
-                        {
-                            Console.WriteLine("YES");
-                            continue;
-                        }
+                        Console.WriteLine("YES");
+                        continue;
                     }
                 }
-                Console.WriteLine("NO");
             }
+            Console.WriteLine("NO");
         }
+    }
 
-        private static bool ContainsAll(string str)
+    private static bool ContainsAll(string str)
+    {
+        bool[] check = new bool[26];
+
+        for (int i = 0; i < str.Length; i++)
         {
-            bool[] check = new bool[26];
-
-            for (int i = 0; i < str.Length; i++)
-            {
-                check[str[i] - 'a'] = true;
-            }
-
-            for (int i = 0; i < 26; i++)
-            {
-                if (!check[i])
-                {
-                    return false;
-                }
-            }
-            return true;
+            check[str[i] - 'a'] = true;
         }
+
+        for (int i = 0; i < 26; i++)
+        {
+            if (!check[i])
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

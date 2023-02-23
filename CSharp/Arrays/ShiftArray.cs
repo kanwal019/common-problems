@@ -12,52 +12,51 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharp.Arrays
+namespace CSharp.Arrays;
+
+public class ShiftArray
 {
-    public class ShiftArray
+    public static void DisplayResult()
     {
-        public static void DisplayResult()
+        int length = Convert.ToInt32(Console.ReadLine());
+        string[] array = new string[length];
+       
+        for (int i=0; i < length; i++)
         {
-            int length = Convert.ToInt32(Console.ReadLine());
-            string[] array = new string[length];
-           
-            for (int i=0; i < length; i++)
-            {
-                array[i] = Console.ReadLine();
-            }
-
-            Console.WriteLine(ArrayChallenge(array));
+            array[i] = Console.ReadLine();
         }
 
-        private static string ArrayChallenge(string[] array)
+        Console.WriteLine(ArrayChallenge(array));
+    }
+
+    private static string ArrayChallenge(string[] array)
+    {
+        List<string> cache = new();
+        string result = "";
+
+        for (int i = 0; i < array.Length; i++)
         {
-            List<string> cache = new List<string>();
-            string result = "";
-
-            for (int i = 0; i < array.Length; i++)
+            if (cache.Contains(array[i]))
             {
-                if (cache.Contains(array[i]))
-                {
-                    cache.Remove(array[i]);
-                }
-                else
-                {
-                    if(cache.Count >= 5 && cache.Count > 0)
-                    {
-                        var temp = cache.First();
-                        cache.Remove(temp);
-                    }                
-                }
-                cache.Add(array[i]);
+                cache.Remove(array[i]);
             }
-
-            foreach(var item in cache)
+            else
             {
-                result += item;
-                result += "-";
+                if(cache.Count >= 5 && cache.Count > 0)
+                {
+                    var temp = cache.First();
+                    cache.Remove(temp);
+                }                
             }
-
-            return result.Substring(0,9);
+            cache.Add(array[i]);
         }
+
+        foreach(var item in cache)
+        {
+            result += item;
+            result += "-";
+        }
+
+        return result.Substring(0,9);
     }
 }

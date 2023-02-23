@@ -10,28 +10,27 @@
 
 using System;
 
-namespace CSharp.Searching
+namespace CSharp.Searching;
+
+public class LastOccurence
 {
-    public class LastOccurence
+    public static void DisplayResult()
     {
-        public static void DisplayResult()
+        var input1 = Console.ReadLine().Split(' ');
+        var input2 = Console.ReadLine().Split(' ');
+
+        int length = Convert.ToInt32(input1[0]);
+        int element = Convert.ToInt32(input1[1]);
+
+        for (var i = length; i > 0; i--)
         {
-            var input1 = Console.ReadLine().Split(' ');
-            var input2 = Console.ReadLine().Split(' ');
-
-            int length = Convert.ToInt32(input1[0]);
-            int element = Convert.ToInt32(input1[1]);
-
-            for(var i=length; i>0; i--)
+            if(Convert.ToInt32(input2[i-1]) == element)
             {
-                if(Convert.ToInt32(input2[i-1]) == element)
-                {
-                    Console.WriteLine(i);
-                    return;
-                }
+                Console.WriteLine(i);
+                return;
             }
-
-            Console.WriteLine("-1");
         }
+
+        Console.WriteLine("-1");
     }
 }

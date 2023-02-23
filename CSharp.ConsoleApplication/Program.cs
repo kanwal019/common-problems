@@ -1,12 +1,11 @@
-﻿namespace CSharp.ConsoleApplication
+﻿namespace CSharp.ConsoleApplication;
+
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            int num = 2;
-            string str = "1A 2F 1C";
-            Strings.SeatManagement.DisplayResult(num, str);
-        }
+        int num = 2;
+        string str = "1A 2F 1C";
+        Strings.SeatManagement.DisplayResult(num, str);
     }
 }
