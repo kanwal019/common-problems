@@ -13,6 +13,6 @@ class Program
         // Searching
 
         int[] arr = { 9, 1, 2, 3, 4, 7, 10, 8 };
-        Searching.BinarySearch.DisplayResult(arr, 8);
+        Searching.SecondLargestMissingNumber.Find(arr);
     }
 }

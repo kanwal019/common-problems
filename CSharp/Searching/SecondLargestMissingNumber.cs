@@ -13,7 +13,7 @@ public class SecondLargestMissingNumber
         Array.Sort(arr);
         Array.Reverse(arr);
 
-        int largestMissing = arr[^1];
+        int largestMissing = arr[0];
         largestMissing = largestMissing >= 1 ? largestMissing : 1;
 
         foreach (int element in arr)
