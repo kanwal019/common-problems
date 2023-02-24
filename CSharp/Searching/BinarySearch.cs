@@ -1,24 +1,32 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CSharp.Searching;
 
 public class BinarySearch
 {
-    public static void DisplayResult()
+    public static void DisplayResult(int[] array, int num)
     {
-        int[] array = { 10, 40, 30, 45, 20, 15 };
-        int num = 45;
+        Dictionary<int, int> positions = new();
 
         for (int i = 0; i < array.Length; i++)
         {
             Console.Write(array[i] + ", ");
+            positions[array[i]] = i;
         }
 
         Array.Sort(array);
-
         Console.WriteLine();
-        // Console.WriteLine(num + " found at position " + Search(array, num) + " in the mentioned array !!");
-        Console.WriteLine(num + " found at position " + SearchRecursive(array, num, 0, array.Length - 1) + " in the mentioned array !!");
+
+        if (SearchRecursive(array, num, 0, array.Length - 1) != -1)
+        // if (Search(array, num) != -1)
+        {
+            Console.WriteLine($"{num} found at position {positions[num]} in the mentioned array !!");
+        }
+        else
+        {
+            Console.WriteLine($"{num} not found at any position in the mentioned array !!");
+        }
     }
 
     static int Search(int[] array, int num)
@@ -29,7 +37,7 @@ public class BinarySearch
         while (min <= max)
         {
             int mid = (min + max) / 2;
-            
+
             if (num == array[mid])
             {
                 return ++mid;
