@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 /**
@@ -35,7 +33,7 @@ public static class TwoSum
         int[] array = [3, 2, 4];
         int target = 6;
 
-        foreach (int item in GetOutput(array, target))
+        foreach (int item in GetOutput2(array, target))
         {
             Console.WriteLine(item);
         }
@@ -55,5 +53,26 @@ public static class TwoSum
             }
         }
         return null;
+    }
+
+    public static int[] GetOutput2(int[] nums, int target)
+    {
+        ArgumentNullException.ThrowIfNull(nums);
+        Dictionary<int, int> keyValuePairs = [];
+
+        for (int i = 0; i < nums.Length; i++)
+        {
+            int difference = target - nums[i];
+            if (keyValuePairs.TryGetValue(difference, out int value))
+            {
+                return [value, i];
+            }
+
+            if (!keyValuePairs.ContainsKey(nums[i]))
+            {
+                keyValuePairs[nums[i]] = i;
+            }
+        }
+        throw new ArgumentException($"Can't find two numbers with sum equal to {target}");
     }
 }
