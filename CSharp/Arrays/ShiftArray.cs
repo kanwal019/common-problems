@@ -20,8 +20,8 @@ public class ShiftArray
     {
         int length = Convert.ToInt32(Console.ReadLine());
         string[] array = new string[length];
-       
-        for (int i=0; i < length; i++)
+
+        for (int i = 0; i < length; i++)
         {
             array[i] = Console.ReadLine();
         }
@@ -31,7 +31,7 @@ public class ShiftArray
 
     private static string ArrayChallenge(string[] array)
     {
-        List<string> cache = new();
+        List<string> cache = [];
         string result = "";
 
         for (int i = 0; i < array.Length; i++)
@@ -42,21 +42,21 @@ public class ShiftArray
             }
             else
             {
-                if(cache.Count >= 5 && cache.Count > 0)
+                if (cache.Count >= 5 && cache.Count > 0)
                 {
                     var temp = cache.First();
                     cache.Remove(temp);
-                }                
+                }
             }
             cache.Add(array[i]);
         }
 
-        foreach(var item in cache)
+        foreach (var item in cache)
         {
             result += item;
             result += "-";
         }
 
-        return result.Substring(0,9);
+        return result[..9];
     }
 }

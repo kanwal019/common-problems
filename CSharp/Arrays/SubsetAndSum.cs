@@ -19,14 +19,13 @@ public class SubsetAndSum
 
     private static void GetSubsets(int[] array, int sum, int count)
     {
-        HashSet<List<int>> set = new();
-        List<int> list = new();
+        HashSet<List<int>> set = [];
+        List<int> list = [];
         bool pairFound = false;
 
-        for(int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)
         {
             //list = FindElements(array, sum, count, list);
-
         }
 
         if (!pairFound)
@@ -37,6 +36,6 @@ public class SubsetAndSum
 
     //private static List<int> FindElements(int[] array, int sum, int count, List<int> list)
     //{
-            
+
     //}
 }
