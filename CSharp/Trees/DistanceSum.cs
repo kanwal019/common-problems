@@ -49,6 +49,8 @@ public class Tree
 
     public Node InsertLevelOrder(List<int> list, Node root, int i)
     {
+        ArgumentNullException.ThrowIfNull(list);
+
         if (i < list.Count && list[i] != -1)
         {
             root = new Node(list[i]);

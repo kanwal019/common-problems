@@ -10,6 +10,7 @@ public class SecondLargestMissingNumber
 {
     public static void Find(int[] arr)
     {
+        ArgumentNullException.ThrowIfNull(arr);
         Array.Sort(arr);
         Array.Reverse(arr);
 

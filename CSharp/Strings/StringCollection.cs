@@ -74,21 +74,25 @@ public class StringCollection
 
     public static List<string> ProcessData(IEnumerable<string> lines)
     {
-        List<string> retVal = new();
-        List<PurchaseData> purchaseData = new();
+        List<string> retVal = [];
+        List<PurchaseData> purchaseData = [];
         PurchaseData data;
+
+        ArgumentNullException.ThrowIfNull(lines);
 
         foreach (var line in lines)
         {
             var current = line.Split(',');
             var priceData = current[4].Trim().Split(' ');
 
-            data = new PurchaseData();
-            data.CustomerName = current[0].Trim();
-            data.StoreLocation = current[1].Trim();
-            data.PurchaseMonth = Convert.ToInt32(current[2].Trim());
-            data.ProductName = current[3].Trim();
-            data.CostPrice = Convert.ToInt32(priceData[1]);
+            data = new PurchaseData
+            {
+                CustomerName = current[0].Trim(),
+                StoreLocation = current[1].Trim(),
+                PurchaseMonth = Convert.ToInt32(current[2].Trim()),
+                ProductName = current[3].Trim(),
+                CostPrice = Convert.ToInt32(priceData[1])
+            };
             purchaseData.Add(data);
         }
 
@@ -101,7 +105,7 @@ public class StringCollection
               return (pData.CostPrice != tempMax.CostPrice) ? pData : null;
           }).Where(pData => pData != null).ToList();
 
-        retVal = purchaseData.Select(pData => pData.CustomerName).Distinct().ToList(); 
+        retVal = purchaseData.Select(pData => pData.CustomerName).Distinct().ToList();
         return retVal;
     }
 }

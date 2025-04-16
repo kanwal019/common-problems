@@ -1,4 +1,6 @@
-﻿namespace CSharp.Sorting;
+﻿using System;
+
+namespace CSharp.Sorting;
 
 public class MergeSort
 {
@@ -11,6 +13,7 @@ public class MergeSort
 
     public static void Sort(ref int[] array, int start, int end)
     {
+        ArgumentNullException.ThrowIfNull(array);
         if (start < end)
         {
             int mid = (start + end) / 2;

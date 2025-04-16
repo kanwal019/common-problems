@@ -1,9 +1,12 @@
-﻿namespace CSharp.Sorting;
+﻿using System;
+
+namespace CSharp.Sorting;
 
 public class InsertionSort
 {
     public static void Sort(int[] array)
     {
+        ArgumentNullException.ThrowIfNull(array);
         int count = array.Length;
         for (int i = 1; i < count; ++i)
         {
@@ -22,6 +25,7 @@ public class InsertionSort
 
     public static void Descending(int[] array)
     {
+        ArgumentNullException.ThrowIfNull(array);
         int count = array.Length;
         for (int i = 1; i < count; ++i)
         {

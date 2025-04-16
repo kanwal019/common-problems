@@ -6,6 +6,7 @@ public class BubbleSort
 {
     public static void Sort<T>(T[] array) where T : IComparable
     {
+        ArgumentNullException.ThrowIfNull(array);
         int count = array.Length;
         for (int i = 0; i < count - 1; i++)
         {
@@ -15,13 +16,14 @@ public class BubbleSort
                 {
                     (array[j + 1], array[j]) = (array[j], array[j + 1]);
                 }
-            }                   
+            }
         }
         Common.Display.Array(array);
     }
 
     public static void Descending<T>(T[] array) where T : IComparable
     {
+        ArgumentNullException.ThrowIfNull(array);
         int count = array.Length;
         for (int i = 0; i < count - 1; i++)
         {
@@ -38,6 +40,8 @@ public class BubbleSort
 
     public static void Optimised<T>(T[] array) where T : IComparable
     {
+        ArgumentNullException.ThrowIfNull(array);
+
         int i, j;
         int count = array.Length;
         bool swapped;

@@ -3,6 +3,7 @@
  */
 
 using System;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CSharp.Searching;
 
@@ -10,6 +11,8 @@ public class SmallestMissingNumber
 {
     public static void Find(int[] arr)
     {
+        ArgumentNullException.ThrowIfNull(arr);
+
         int smallestMissing = 1;
         Array.Sort(arr);
 

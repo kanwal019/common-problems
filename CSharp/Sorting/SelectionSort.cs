@@ -1,19 +1,22 @@
-﻿namespace CSharp.Sorting;
+﻿using System;
+
+namespace CSharp.Sorting;
 
 public class SelectionSort
 {
     public static void Sort(int[] array)
     {
+        ArgumentNullException.ThrowIfNull(array);
         int count = array.Length;
         for (int i = 0; i < count - 1; i++)
-        {               
+        {
             int min = i;
             for (int j = i + 1; j < count; j++)
             {
                 if (array[j] < array[min])
                 {
                     min = j;
-                }                
+                }
             }
 
             (array[i], array[min]) = (array[min], array[i]);
@@ -23,6 +26,7 @@ public class SelectionSort
 
     public static void Descending(int[] array)
     {
+        ArgumentNullException.ThrowIfNull(array);
         int count = array.Length;
         for (int i = 0; i < count - 1; i++)
         {
