@@ -6,5 +6,8 @@
 
 // Searching
 
-int[] arr = [9, 1, 2, 3, 4, 7, 10, 8];
-CSharp.Searching.SecondLargestMissingNumber.Find(arr);
+//int[] arr = [9, 1, 2, 3, 4, 7, 10, 8];
+//CSharp.Searching.SecondLargestMissingNumber.Find(arr);
+
+// Test
+CSharp.Arrays.TwoSum.DisplayResult();
