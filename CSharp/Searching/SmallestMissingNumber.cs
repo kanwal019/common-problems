@@ -3,7 +3,6 @@
  */
 
 using System;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CSharp.Searching;
 
@@ -32,5 +31,5 @@ public class SmallestMissingNumber
             }
         }
         Console.WriteLine(smallestMissing);
-    } 
+    }
 }

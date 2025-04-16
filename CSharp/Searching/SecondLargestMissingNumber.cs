@@ -33,5 +33,5 @@ public class SecondLargestMissingNumber
             }
         }
         Console.WriteLine(largestMissing);
-    } 
+    }
 }

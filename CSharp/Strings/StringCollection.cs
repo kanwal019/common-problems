@@ -28,12 +28,7 @@ public class PurchaseData
 
 public class StringCollection
 {
-    private static List<string> MockData
-    {
-        get
-        {
-            return new List<string>
-            {
+    private static List<string> MockData => [
                 "Jon Smith, Los Angeles, 2, Cell Phone, $ 200",
                 "John Doe, Los Angeles, 2, Landline Phone, $ 100",
                 "John Smith, Los Angeles, 2, Landline Phone, $ 200",
@@ -45,9 +40,7 @@ public class StringCollection
                 "Jane Smith, Los Angeles, 2, Charger, $ 150",
                 "John Cena, Los Angeles, 2, Charger, $ 100",
                 "John Myth, Los Angeles, 2, Cell Phone, $ 250"
-            };
-        }
-    }
+            ];
 
     public static void DisplayResult()
     {
@@ -96,16 +89,16 @@ public class StringCollection
             purchaseData.Add(data);
         }
 
-        purchaseData = purchaseData.Select(pData =>
+        purchaseData = [.. purchaseData.Select(pData =>
           {
               var tempMax = purchaseData
               .OrderByDescending(pTemp => pTemp.CostPrice)
               .Where(pTemp => pTemp.ProductName == pData.ProductName)
               .Select(pTemp => pTemp).First();
               return (pData.CostPrice != tempMax.CostPrice) ? pData : null;
-          }).Where(pData => pData != null).ToList();
+          }).Where(pData => pData != null)];
 
-        retVal = purchaseData.Select(pData => pData.CustomerName).Distinct().ToList();
+        retVal = [.. purchaseData.Select(pData => pData.CustomerName).Distinct()];
         return retVal;
     }
 }

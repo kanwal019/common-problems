@@ -1,18 +1,10 @@
-﻿namespace CSharp.ConsoleApplication;
+﻿// Seat management 
 
-class Program
-{
-    static void Main(string[] args)
-    {
-        // Seat management 
+//int num = 2;
+//string str = "1A 2F 1C";
+//Strings.SeatManagement.DisplayResult(num, str);
 
-        //int num = 2;
-        //string str = "1A 2F 1C";
-        //Strings.SeatManagement.DisplayResult(num, str);
+// Searching
 
-        // Searching
-
-        int[] arr = { 9, 1, 2, 3, 4, 7, 10, 8 };
-        Searching.SecondLargestMissingNumber.Find(arr);
-    }
-}
+int[] arr = [9, 1, 2, 3, 4, 7, 10, 8];
+CSharp.Searching.SecondLargestMissingNumber.Find(arr);

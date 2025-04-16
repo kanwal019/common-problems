@@ -8,7 +8,7 @@ public class BinarySearch
     public static void DisplayResult(int[] array, int num)
     {
         ArgumentNullException.ThrowIfNull(array);
-        Dictionary<int, int> positions = new();
+        Dictionary<int, int> positions = [];
 
         for (int i = 0; i < array.Length; i++)
         {

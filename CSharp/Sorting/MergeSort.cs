@@ -6,7 +6,7 @@ public class MergeSort
 {
     public static void DisplayResult()
     {
-        int[] unsortedArray = new int[] { 1, -2, -1, 0, 6, 5, -3, -5 };
+        int[] unsortedArray = [1, -2, -1, 0, 6, 5, -3, -5];
         Sort(ref unsortedArray, 0, unsortedArray.Length - 1);
         Common.Display.Array(unsortedArray);
     }

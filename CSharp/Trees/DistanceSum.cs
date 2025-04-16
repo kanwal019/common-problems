@@ -3,24 +3,29 @@ using System.Collections.Generic;
 
 namespace CSharp.Trees;
 
+public static class TreeResult
+{
+
+}
+
 public class DistanceSum
-{ 
+{
     public static void DisplayResult()
     {
         int count = Convert.ToInt32(Console.ReadLine());
-        List<int> binaryTreeList = new();
+        List<int> binaryTreeList = [];
 
-        for(int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)
         {
             var line = Console.ReadLine().Trim().Split(' ');
-            for(int j = 0; j < line.Length; j++)
+            for (int j = 0; j < line.Length; j++)
             {
                 binaryTreeList.Add(Convert.ToInt32(line[j].Trim()));
             }
         }
 
         Tree binaryTree = new();
-        binaryTree.Root = binaryTree.InsertLevelOrder(binaryTreeList, binaryTree.Root, 0);
+        binaryTree.Root = Tree.InsertLevelOrder(binaryTreeList, binaryTree.Root, 0);
         // binaryTree.InOrder(binaryTree.Root);
 
         Tree.Result = 0;
@@ -34,20 +39,13 @@ public class Tree
     public Node Root;
     public static int Result;
 
-    public class Node
+    public class Node(int data)
     {
-        public int Data;
-        public Node Left, Right;
-
-        public Node(int data)
-        {
-            this.Data = data;
-            this.Left = null;
-            this.Right = null;
-        }
+        public int Data = data;
+        public Node Left = null, Right = null;
     }
 
-    public Node InsertLevelOrder(List<int> list, Node root, int i)
+    public static Node InsertLevelOrder(List<int> list, Node root, int i)
     {
         ArgumentNullException.ThrowIfNull(list);
 
@@ -60,9 +58,9 @@ public class Tree
         return root;
     }
 
-    public void InOrder(Node root)
+    public static void InOrder(Node root)
     {
-        if (root != null)
+        if (root is not null)
         {
             InOrder(root.Left);
             Console.Write(root.Data + " ");
@@ -73,12 +71,12 @@ public class Tree
     public static int[] DepthFirstSearch(Node root, int distance)
     {
         int[] res;
-        if (root == null) 
+        if (root is null)
         {
             return new int[distance + 1];
         }
-            
-        if (root.Left == null && root.Right == null)
+
+        if (root.Left is null && root.Right is null)
         {
             res = new int[distance + 1];
             res[1]++;
@@ -104,7 +102,6 @@ public class Tree
                 }
             }
         }
-
         return res;
     }
 }
