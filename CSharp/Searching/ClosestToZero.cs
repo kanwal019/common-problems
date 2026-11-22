@@ -21,8 +21,7 @@ public class ClosestToZero
         line = Console.ReadLine();
         int N = Convert.ToInt32(line);
         line = Console.ReadLine();
-        int[] A = new int[N];
-        A = line.Split().Select(str => int.Parse(str)).ToArray();
+        int[] A = [.. line.Split().Select(int.Parse)];
 
         int out_ = ReturnOutput(N, A);
         Console.Out.WriteLine(out_);

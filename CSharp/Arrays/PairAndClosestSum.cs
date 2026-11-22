@@ -10,7 +10,7 @@ public class PairAndClosestSum
 {
     public static void DisplayResult()
     {
-        int[] input = { 1, 5, 22, 10, 17 };
+        int[] input = [1, 5, 22, 10, 17];
         int sum = 14;
 
         GetClosestPairV2(input, sum);
@@ -18,7 +18,7 @@ public class PairAndClosestSum
 
     private static void GetClosestPair(int[] input, int sum)
     {
-        Dictionary<int, string> diffPairs = new();
+        Dictionary<int, string> diffPairs = [];
         int nearest = sum;
         for (int i = 0; i < input.Length; i++)
         {

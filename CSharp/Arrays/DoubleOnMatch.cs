@@ -6,7 +6,7 @@ public class DoubleOnMatch
 {
     public static void DisplayResult()
     {
-        int[] array = { 1, 2, 4, 11, 12, 8 };
+        int[] array = [1, 2, 4, 11, 12, 8];
         Console.WriteLine(ProcessSize(array, 2));
     }
 

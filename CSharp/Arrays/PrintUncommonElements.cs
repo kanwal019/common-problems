@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace CSharp.Arrays;
 
@@ -8,8 +7,8 @@ public class PrintUncommonElements
 {
     public static void DisplayResult()
     {
-        int[] array1 = { 40, 50, 60, 45 };
-        int[] array2 = { 10, 40, 30, 45, 20, 15 };
+        int[] array1 = [40, 50, 60, 45];
+        int[] array2 = [10, 40, 30, 45, 20, 15];
 
         int count1 = array1.Length;
         int count2 = array2.Length;
@@ -26,12 +25,12 @@ public class PrintUncommonElements
 
         while (it1 < count1 && it2 < count2)
         {
-            if(array1[it1] < array2[it2])
+            if (array1[it1] < array2[it2])
             {
                 Console.WriteLine(array1[it1] + " ");
                 it1 += 1;
             }
-            else if(array1[it1] > array2[it2])
+            else if (array1[it1] > array2[it2])
             {
                 Console.WriteLine(array2[it2] + " ");
                 it2 += 1;
@@ -43,7 +42,7 @@ public class PrintUncommonElements
             }
         }
 
-        while(it1 < count1 || it2 < count2)
+        while (it1 < count1 || it2 < count2)
         {
             if (it1 < count1)
             {
@@ -61,12 +60,12 @@ public class PrintUncommonElements
 
     private static void PrintUncommonV2(int[] array1, int[] array2, int count1, int count2)
     {
-        array1 =  array1.Concat(array2).ToArray();
+        array1 = [.. array1, .. array2];
         Array.Sort(array1);
 
-        Dictionary<int, int> elementCount = new();
+        Dictionary<int, int> elementCount = [];
 
-        for(int i = 0; i < array1.Length; i++)
+        for (int i = 0; i < array1.Length; i++)
         {
             if (elementCount.ContainsKey(array1[i]))
             {
@@ -76,9 +75,9 @@ public class PrintUncommonElements
             elementCount.Add(array1[i], 1);
         }
 
-        for(int i = 0; i < array1.Length; i++)
+        for (int i = 0; i < array1.Length; i++)
         {
-            if(elementCount[array1[i]] == 1)
+            if (elementCount[array1[i]] == 1)
             {
                 Console.Write(array1[i] + " ");
             }
@@ -90,7 +89,7 @@ public class PrintUncommonElements
         Array.Sort(array1);
         Array.Sort(array2);
 
-        List<int> uncommon = new();
+        List<int> uncommon = [];
 
         for (int i = 0; i < count1; i++)
         {
@@ -98,7 +97,7 @@ public class PrintUncommonElements
             {
                 uncommon.Add(array1[i]);
             }
-        };
+        }
 
         for (int i = 0; i < count2; i++)
         {
@@ -106,9 +105,9 @@ public class PrintUncommonElements
             {
                 uncommon.Add(array2[i]);
             }
-        };
+        }
 
-        foreach(var item in uncommon)
+        foreach (var item in uncommon)
         {
             Console.Write(item + " ");
         }

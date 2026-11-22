@@ -68,10 +68,7 @@ public static class TwoSum
                 return [value, i];
             }
 
-            if (!keyValuePairs.ContainsKey(nums[i]))
-            {
-                keyValuePairs[nums[i]] = i;
-            }
+            keyValuePairs.TryAdd(nums[i], i);
         }
         throw new ArgumentException($"Can't find two numbers with sum equal to {target}");
     }

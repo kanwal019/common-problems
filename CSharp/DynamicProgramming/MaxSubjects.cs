@@ -7,8 +7,8 @@ class MaxSubjects
 {
     public static int MaxSubjectsNumber(List<int> answered, List<int> needed, int q)
     {
-        HashSet<int> ignored = new();
-        List<int> required = new();
+        HashSet<int> ignored = [];
+        List<int> required = [];
         int subjects = 0;
 
         for (int i = 0; i < needed.Count; i++)

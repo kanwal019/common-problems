@@ -18,7 +18,7 @@ public class MaximumBinaryNumber
     {
         int num = Convert.ToInt32(Console.ReadLine());
 
-        for(int i = 0; i < num; i++)
+        for (int i = 0; i < num; i++)
         {
             var firstLine = Console.ReadLine().Split();
             int length = Convert.ToInt32(firstLine[0]);
@@ -35,10 +35,10 @@ public class MaximumBinaryNumber
         int shifts = 0;
         int thisCount = 0;
 
-        while(thisCount != count)
+        while (thisCount != count)
         {
             char first = current[0];
-            current = current.Substring(1);
+            current = current[1..];
             current += first;
             shifts += 1;
 
@@ -84,22 +84,22 @@ public class MaximumBinaryNumber
 
     static bool IsCurrentStringMax(string current, string max)
     {
-        if(Convert.ToInt32(current[..2]) > Convert.ToInt32(max[..2]))
+        if (Convert.ToInt32(current[..2]) > Convert.ToInt32(max[..2]))
         {
             return true;
-        } 
-        else if(Convert.ToInt32(current[..2]) < Convert.ToInt32(max[..2]))
+        }
+        else if (Convert.ToInt32(current[..2]) < Convert.ToInt32(max[..2]))
         {
             return false;
         }
 
-        if(current.Length > 2)
+        if (current.Length > 2)
         {
             return IsCurrentStringMax(current[2..], max[2..]);
         }
         else
         {
             return false;
-        }              
+        }
     }
 }

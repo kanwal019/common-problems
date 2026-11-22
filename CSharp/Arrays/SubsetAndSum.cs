@@ -11,7 +11,7 @@ public class SubsetAndSum
 {
     public static void DisplayResult()
     {
-        int[] array = new int[] { 1, -2, -1, 0, 6, 5, -3, -5 };
+        int[] array = [1, -2, -1, 0, 6, 5, -3, -5];
         int sum = 5;
 
         GetSubsets(array, sum, array.Length);

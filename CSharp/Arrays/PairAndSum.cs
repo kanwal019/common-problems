@@ -10,7 +10,7 @@ public class PairAndSum
 {
     public static void DisplayResult()
     {
-        int[] array = new int[] { 1, -2, -1, 0, 6, 5, -3, -5 };
+        int[] array = [1, -2, -1, 0, 6, 5, -3, -5];
         int sum = 5;
 
         GetPair(array, sum, array.Length);
@@ -18,10 +18,10 @@ public class PairAndSum
 
     private static void GetPair(int[] array, int sum, int count)
     {
-        HashSet<int> set = new();
+        HashSet<int> set = [];
         bool pairFound = false;
 
-        for(int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)
         {
             int diff = sum - array[i];
             if (set.Contains(diff))

@@ -29,8 +29,8 @@ public class JobSequencing
     {
         get
         {
-            return new List<string>
-            {
+            return
+            [
                 "A, 13, 100",
                 "B, 18, 400",
                 "C, 13, 230",
@@ -39,17 +39,17 @@ public class JobSequencing
                 "F, 13, 200",
                 "G, 18, 240",
                 "H, 18, 500",
-            };
+            ];
         }
     }
 
     public static void DisplayResult()
     {
         //int count = Convert.ToInt32(Console.ReadLine());
-        List<Job> jobs = new();
+        List<Job> jobs = [];
         Job job;
 
-        for(int i = 0; i < MockData.Count; i++)
+        for (int i = 0; i < MockData.Count; i++)
         {
             //var input = Console.ReadLine().Split(',');
             var input = MockData[i].Split(',');

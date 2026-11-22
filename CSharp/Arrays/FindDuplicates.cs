@@ -16,8 +16,7 @@ public class FindDuplicates
         int count = Convert.ToInt32(line);
         line = Console.ReadLine();
 
-        int[] array = new int[count];
-        array = line.Split().Select(str => int.Parse(str)).ToArray();
+        int[] array = [.. line.Split().Select(int.Parse)];
 
         Console.WriteLine(FindDuplicateElementsSansDict(array, count));
     }
@@ -25,16 +24,16 @@ public class FindDuplicates
     private static string FindDuplicateElements(int[] array, int count)
     {
         string str = "";
-        Dictionary<int, int> Elements = new();
+        Dictionary<int, int> Elements = [];
 
-        for(int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)
         {
             if (Elements.ContainsKey(array[i]))
             {
                 if (!str.Contains(array[i].ToString()))
                 {
                     str += (array[i] + " ");
-                }                   
+                }
                 Elements[array[i]] += 1;
                 continue;
             }
@@ -55,7 +54,7 @@ public class FindDuplicates
                 if (!str.Contains(array[i].ToString()))
                 {
                     str += (array[i] + " ");
-                }                   
+                }
                 continue;
             }
             isAssigned[array[i]] = true;

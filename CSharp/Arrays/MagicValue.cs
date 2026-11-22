@@ -17,14 +17,13 @@ namespace CSharp.Arrays;
 
 class MagicValue
 {
-    public static void DisplayResult() 
+    public static void DisplayResult()
     {
         string line = Console.ReadLine();
         int count = Convert.ToInt32(line);
         line = Console.ReadLine();
 
-        int[] array = new int[count];
-        array = line.Split().Select(int.Parse).ToArray();
+        int[] array = [.. line.Split().Select(int.Parse)];
 
         int[] iArray = new int[count];
         int good = 0, bad = 0;

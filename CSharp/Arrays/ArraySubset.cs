@@ -7,15 +7,15 @@ public class ArraySubset
 {
     public static void DisplayResult()
     {
-        int[] array1 = { 10, 40, 30, 45, 20, 15, 60, 50 };
-        int[] array2 = { 40, 50, 60, 45 };
+        int[] array1 = [10, 40, 30, 45, 20, 15, 60, 50];
+        int[] array2 = [40, 50, 60, 45];
 
         Console.WriteLine(IsSubset(array1, array2));
     }
 
     static bool IsSubset(int[] parent, int[] child)
     {
-        HashSet<int> set = new();
+        HashSet<int> set = [];
         int count = 0;
 
         for (int i = 0; i < child.Length; i++)

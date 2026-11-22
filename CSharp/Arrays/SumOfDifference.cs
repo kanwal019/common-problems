@@ -6,7 +6,7 @@ public class SumOfDifference
 {
     public static void DisplayResult()
     {
-        int[] array = { 1, 3, 3, 2, 4 };
+        int[] array = [1, 3, 3, 2, 4];
         Array.Sort(array);
         Console.WriteLine(MinimumDifference(array));
     }
