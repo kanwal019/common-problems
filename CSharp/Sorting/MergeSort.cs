@@ -16,7 +16,7 @@ public class MergeSort
         ArgumentNullException.ThrowIfNull(array);
         if (start < end)
         {
-            int mid = (start + end) / 2;
+            int mid = start + (end - start) / 2;
             Sort(ref array, start, mid);
             Sort(ref array, mid + 1, end);
             Merge(ref array, start, mid, end);
@@ -45,9 +45,6 @@ public class MergeSort
                 arr[k++] = array[q++];
         }
 
-        for (int i = 0; i < k; i++)
-        {
-            array[start++] = arr[i];
-        }
+        arr.AsSpan(0, k).CopyTo(array.AsSpan(start));
     }
 }

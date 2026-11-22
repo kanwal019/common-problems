@@ -19,7 +19,7 @@ public class CompleteString
     public static void DisplayResult()
     {
         var length = Convert.ToInt32(Console.ReadLine());
-        List<string> input = new();
+        List<string> input = [];
 
         for (int i = 0; i < length; i++)
         {

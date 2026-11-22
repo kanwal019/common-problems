@@ -6,17 +6,17 @@ public class DartThreeZeroOne
 {
     public static void DisplayResult()
     {
-        string[][] array = new string[][] {
-            new string [] { "D10", "T2", "18", "17", "D19", "5" },
-            new string [] { "D20", "T20", "T20", "T20", "T10", "1", "T17", "0" , "0" },
-            new string [] { "D20", "T20", "T20", "T20", "T10", "1", "T17", "0" , "0", "11", "0", "0" },
-            new string [] { "D20", "T20", "T20", "T20", "T10", "1", "20", "15", "0" , "T5" },
-            new string [] { "D20", "T20", "T20", "T20", "T10", "1", "20", "15", "0" , "T5", "15" },
-            new string [] { "D20", "T20", "T20", "T20", "T10", "1", "20", "5", "0", "SB" },
-            new string [] { "D20", "T20", "T20", "T20", "T10", "1", "T10", "D10" },
-            new string [] { "17", "T2", "17", "18", "17", "D19", "5" },
-            new string [] { "D20", "T20", "T20", "T20", "T10", "1", "DB" }
-        };
+        string[][] array = [
+            ["D10", "T2", "18", "17", "D19", "5"],
+            ["D20", "T20", "T20", "T20", "T10", "1", "T17", "0" , "0"],
+            ["D20", "T20", "T20", "T20", "T10", "1", "T17", "0" , "0", "11", "0", "0"],
+            ["D20", "T20", "T20", "T20", "T10", "1", "20", "15", "0" , "T5"],
+            ["D20", "T20", "T20", "T20", "T10", "1", "20", "15", "0" , "T5", "15"],
+            ["D20", "T20", "T20", "T20", "T10", "1", "20", "5", "0", "SB"],
+            ["D20", "T20", "T20", "T20", "T10", "1", "T10", "D10"],
+            ["17", "T2", "17", "18", "17", "D19", "5"],
+            ["D20", "T20", "T20", "T20", "T10", "1", "DB"]
+        ];
 
         for (int i = 0; i < array.Length; i++)
         {
@@ -49,7 +49,7 @@ public class DartThreeZeroOne
 
                     if (array[i][1] != 'B')
                     {
-                        val += (2 * Convert.ToInt32(array[i].Substring(1)));
+                        val += (2 * Convert.ToInt32(array[i][1..]));
                     }
                     else
                     {
@@ -62,7 +62,7 @@ public class DartThreeZeroOne
                     {
                         if (array[i][1] != 'B')
                         {
-                            val += (3 * Convert.ToInt32(array[i].Substring(1)));
+                            val += (3 * Convert.ToInt32(array[i][1..]));
                         }
                         else
                         {

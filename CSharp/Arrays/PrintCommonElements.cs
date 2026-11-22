@@ -6,8 +6,8 @@ public class PrintCommonElements
 {
     public static void DisplayResult()
     {
-        int[] array1 = { 40, 50, 60, 45 };
-        int[] array2 = { 10, 40, 30, 45, 20, 15 };
+        int[] array1 = [40, 50, 60, 45];
+        int[] array2 = [10, 40, 30, 45, 20, 15];
 
         int count1 = array1.Length;
         int count2 = array2.Length;
@@ -24,11 +24,11 @@ public class PrintCommonElements
 
         while (it1 < count1 || it2 < count2)
         {
-            if(array1[it1] < array2[it2])
+            if (array1[it1] < array2[it2])
             {
                 it1 += 1;
             }
-            else if(array1[it1] > array2[it2])
+            else if (array1[it1] > array2[it2])
             {
                 it2 += 1;
             }
@@ -52,7 +52,7 @@ public class PrintCommonElements
             {
                 return array1[i];
             }
-        };
+        }
 
         return -1;
     }
