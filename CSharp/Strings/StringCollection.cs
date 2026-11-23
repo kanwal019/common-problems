@@ -47,7 +47,7 @@ public class StringCollection
         try
         {
             string line;
-            var inputLines = new List<string>();
+            List<string> inputLines = [];
             while ((line = Console.ReadLine()) != null)
             {
                 line = line.Trim();
@@ -67,18 +67,17 @@ public class StringCollection
 
     public static List<string> ProcessData(IEnumerable<string> lines)
     {
-        List<string> retVal = [];
-        List<PurchaseData> purchaseData = [];
-        PurchaseData data;
-
         ArgumentNullException.ThrowIfNull(lines);
+
+        List<PurchaseData> purchaseData = [];
+        Dictionary<string, int> maximumPrices = [with(StringComparer.Ordinal)];
 
         foreach (var line in lines)
         {
             var current = line.Split(',');
             var priceData = current[4].Trim().Split(' ');
 
-            data = new PurchaseData
+            var data = new PurchaseData
             {
                 CustomerName = current[0].Trim(),
                 StoreLocation = current[1].Trim(),
@@ -87,18 +86,17 @@ public class StringCollection
                 CostPrice = Convert.ToInt32(priceData[1])
             };
             purchaseData.Add(data);
+
+            if (!maximumPrices.TryGetValue(data.ProductName, out int maximumPrice)
+                || data.CostPrice > maximumPrice)
+            {
+                maximumPrices[data.ProductName] = data.CostPrice;
+            }
         }
 
-        purchaseData = [.. purchaseData.Select(pData =>
-          {
-              var tempMax = purchaseData
-              .OrderByDescending(pTemp => pTemp.CostPrice)
-              .Where(pTemp => pTemp.ProductName == pData.ProductName)
-              .Select(pTemp => pTemp).First();
-              return (pData.CostPrice != tempMax.CostPrice) ? pData : null;
-          }).Where(pData => pData != null)];
-
-        retVal = [.. purchaseData.Select(pData => pData.CustomerName).Distinct()];
-        return retVal;
+        return [.. purchaseData
+            .Where(data => data.CostPrice < maximumPrices[data.ProductName])
+            .Select(data => data.CustomerName)
+            .Distinct()];
     }
 }
