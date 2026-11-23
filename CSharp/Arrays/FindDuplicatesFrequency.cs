@@ -16,39 +16,37 @@ public class FindDuplicatesFrequency
         int count = Convert.ToInt32(line);
         line = Console.ReadLine();
 
-        int[] array = new int[count];
-        array = line.Split().Select(int.Parse).ToArray();
+        int[] array = [.. line.Split().Select(int.Parse)];
 
         FindDuplicateElementsFrequencySanDict(array, count);
     }
 
     private static void FindDuplicateElementsFrequency(int[] array, int count)
     {
-        Dictionary<int, int> Elements = new();
+        Dictionary<int, int> Elements = [];
 
-        for(int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)
         {
-            if (Elements.ContainsKey(array[i]))
-            {               
-                Elements[array[i]] += 1;
+            if (Elements.TryGetValue(array[i], out int frequency))
+            {
+                Elements[array[i]] = frequency + 1;
                 continue;
             }
             Elements.Add(array[i], 1);
         }
-        
-        foreach(var element in Elements)
+
+        foreach (var element in Elements)
         {
-            if(element.Value > 1)
+            if (element.Value > 1)
             {
                 Console.WriteLine(element.Key + " occured " + element.Value + " times.");
-            }            
+            }
         }
     }
 
     private static void FindDuplicateElementsFrequencySanDict(int[] array, int count)
     {
         int[] frequency = new int[count];
-        Array.Clear(frequency, 0, frequency.Length);
 
         for (int i = 0; i < count; i++)
         {
