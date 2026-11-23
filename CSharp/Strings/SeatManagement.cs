@@ -12,29 +12,30 @@ public class SeatManagement
         {
             foreach (var seat in reserved.Split(' '))
             {
-                int row = int.Parse(seat.Substring(0, seat.Length - 1));
+                int row = int.Parse(seat[..^1]);
                 char col = seat[^1];
-                if (!reservedSeats.ContainsKey(row))
+                if (!reservedSeats.TryGetValue(row, out var seats))
                 {
-                    reservedSeats[row] = new List<char>();
+                    seats = [];
+                    reservedSeats.Add(row, seats);
                 }
-                reservedSeats[row].Add(col);
+                seats.Add(col);
             }
         }
 
         int ways = 0, flag1 = 0, flag2 = 0;
         for (int row = 1; row <= rows; row++)
         {
-            if (reservedSeats.ContainsKey(row))
+            if (reservedSeats.TryGetValue(row, out var seats))
             {
                 flag1 = 0;
 
-                if (!reservedSeats[row].Contains('B') && !reservedSeats[row].Contains('C') && !reservedSeats[row].Contains('D') && !reservedSeats[row].Contains('E'))
+                if (!seats.Contains('B') && !seats.Contains('C') && !seats.Contains('D') && !seats.Contains('E'))
                 {
                     flag1 += 1;
                 }
 
-                if (!reservedSeats[row].Contains('F') && !reservedSeats[row].Contains('G') && !reservedSeats[row].Contains('H') && !reservedSeats[row].Contains('J'))
+                if (!seats.Contains('F') && !seats.Contains('G') && !seats.Contains('H') && !seats.Contains('J'))
                 {
                     flag1 += 1;
                 }
@@ -43,17 +44,17 @@ public class SeatManagement
                 {
                     flag2 = 0;
 
-                    if (!reservedSeats[row].Contains('D') && !reservedSeats[row].Contains('E') && !reservedSeats[row].Contains('F') && !reservedSeats[row].Contains('G'))
+                    if (!seats.Contains('D') && !seats.Contains('E') && !seats.Contains('F') && !seats.Contains('G'))
                     {
                         flag2 += 1;
                     }
 
-                    if (reservedSeats[row].Contains('D') && !(reservedSeats[row].Contains('F') ||reservedSeats[row].Contains('G') || reservedSeats[row].Contains('H') || reservedSeats[row].Contains('J')))
+                    if (seats.Contains('D') && !(seats.Contains('F') || seats.Contains('G') || seats.Contains('H') || seats.Contains('J')))
                     {
 
                         flag2 += 1;
                     }
-                    if (reservedSeats[row].Contains('G') && !(reservedSeats[row].Contains('B') || reservedSeats[row].Contains('C') || reservedSeats[row].Contains('D') || reservedSeats[row].Contains('E')))
+                    if (seats.Contains('G') && !(seats.Contains('B') || seats.Contains('C') || seats.Contains('D') || seats.Contains('E')))
                     {
                         flag2 += 1;
                     }
