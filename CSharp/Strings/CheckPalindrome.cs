@@ -13,18 +13,20 @@ public class CheckPalindrome
 {
     public static void DisplayResult()
     {
-        string str = Console.ReadLine();          
+        string str = Console.ReadLine();
         Console.WriteLine(IsPalindrome(str));
     }
 
     private static string IsPalindrome(string str)
     {
         string current = str.Replace(" ", string.Empty);
-        string reverse = "";
-        for (int i = current.Length - 1; i >= 0; i--)
+        for (int left = 0, right = current.Length - 1; left < right; left++, right--)
         {
-            reverse += current[i].ToString();
+            if (current[left] != current[right])
+            {
+                return bool.FalseString;
+            }
         }
-        return (reverse == current).ToString();
+        return bool.TrueString;
     }
 }
