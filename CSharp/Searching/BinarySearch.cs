@@ -37,7 +37,7 @@ public class BinarySearch
 
         while (min <= max)
         {
-            int mid = (min + max) / 2;
+            int mid = min + (max - min) / 2;
 
             if (num == array[mid])
             {
@@ -64,7 +64,7 @@ public class BinarySearch
             return -1;
         }
 
-        int mid = (min + max) / 2;
+        int mid = min + (max - min) / 2;
 
         if (num == array[mid])
         {
